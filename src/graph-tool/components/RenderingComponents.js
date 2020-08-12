@@ -128,10 +128,10 @@ export class GraphRender extends React.Component {
     handleKeyPress(e) {
         switch (e.keyCode) {
             case 8:
-                //e.preventDefault()
                 let actions = []
                 let cmds = []
                 if (this.state.selectedNode != null) {
+                    e.preventDefault()
                     actions.push(Transformations.deleteNode(this.props.graph, this.state.selectedNode.label))
                     cmds.push('del ' + this.state.selectedNode.label)
                     this.setState({selectedNode: null})
