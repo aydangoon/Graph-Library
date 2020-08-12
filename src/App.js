@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import GraphTool from './graph-tool/GraphTool.js'
+import Home from './components/home/Home.js'
+import MenuBar from './components/menubar/MenuBar.js'
+import Tutorial from './components/tutorial/Tutorial.js'
+import DevBlog from './components/devblog/DevBlog.js'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+            <Router>
+                <MenuBar />
+                <Route path="/" exact component={Home} />
+                <Route path="/home" component={Home} />
+                <Route path="/devblog" component={DevBlog} />
+                <Route path="/tutorial" component={Tutorial} />
+                <Route path="/graph" component={GraphTool} />
+            </Router>
+    )
 }
 
-export default App;
+export default App

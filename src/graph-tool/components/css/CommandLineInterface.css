@@ -1,0 +1,41 @@
+#command-line-interface {
+    text-align: left;
+    font-size: var(--small-text);
+    height: 50%;
+    margin-top: var(--mar);
+}
+
+#cli-status-wrapper {
+    background-color: var(--celeste);
+    color: var(--celadon-blue);
+    padding: var(--pad);
+    margin-top: var(--mar);
+    border-radius: var(--border-rad) var(--border-rad) 0px 0px;
+    overflow: auto;
+}
+
+#command-line-output {
+    display: block;
+    text-align: left;
+    overflow-y: auto;
+    border-radius: 0px 0px var(--border-rad) var(--border-rad);
+    padding: var(--pad) 0px 0px var(--pad);
+    background-color: var(--indigo-blue);
+    height: 72%;
+}
+
+#input-line-wrapper {
+    background-color: var(--celeste);
+    color: var(--celadon-blue);
+    padding: var(--pad);
+    border-radius: var(--border-rad);
+    margin-top: var(--mar);
+    overflow: auto;
+}
+
+#cursor {
+    color: inherit;
+    border: none;
+    background-color: inherit;
+    outline: none;
+}

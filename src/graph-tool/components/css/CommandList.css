@@ -1,0 +1,31 @@
+#command-list {
+    text-align: left;
+    height: 50%;
+    overflow: auto;
+    margin-bottom: var(--mar);
+}
+#command-list *:not(.section-label) {
+    font-size: var(--small-text);
+}
+.command-list-item {
+    padding: var(--mar);
+    margin: var(--mar) var(--mar) 0px 0px;
+    background-color: var(--celeste);
+    border-radius: var(--border-rad);
+}
+.command-list-item > * {
+    color: var(--celadon-blue);
+}
+
+#constraint-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.constraint {
+    padding: var(--pad);
+    margin-right: var(--mar);
+    background-color: var(--deep-red2);
+    color: white;
+    border-radius: var(--border-rad);
+}

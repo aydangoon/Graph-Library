@@ -1,0 +1,32 @@
+#menubar {
+    display: flex;
+    margin-bottom: calc(var(--mar) * 4);
+    align-items: center;
+    height: 4vh;
+}
+
+#menubar > * {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: var(--lightest-grey);
+    text-decoration: none;
+}
+
+@keyframes button-hover {
+  from {background-color: var(--lightest-grey)}
+  to {background-color: var(--light-grey)}
+}
+
+#menubar > *:hover {
+    animation-name: button-hover;
+    animation-duration: 0.5s;
+    background-color: var(--light-grey);
+    cursor: pointer;
+}
+
+#menubar > *:not(:last-child) {
+    border-right: 2px solid var(--light-grey);
+}

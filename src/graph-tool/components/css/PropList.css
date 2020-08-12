@@ -1,0 +1,11 @@
+#props-list {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#props-list > * {
+    border-radius: var(--border-rad);
+    padding: var(--pad);
+    margin: var(--mar);
+}
