@@ -1,14 +1,19 @@
+
 .title {
     font-size: var(--title-text);
 }
 
-.subtitle {
-    font-size: var(--subtitle-text);
-}
-
-#home-features-list {
+#page-container {
     background-color: var(--light-grey);
 }
+
+#greeting {
+    padding: var(--gen-pad);
+}
+#greeting > * {
+    margin: var(--gen-mar);
+}
+
 .feature-sect {
     overflow: hidden;
     display: flex;
@@ -19,61 +24,66 @@
 .feature-sect > * {
     flex-basis: 50%;
     padding: var(--gen-pad);
-    margin: var(--gen-mar);
+    margin: var(--mar);
     border-radius: var(--border-rad);
 }
-.feature-sect > *.disp {
+
+.feature-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+}
+
+.feature-paragraph {
+    width: 50%;
+    text-align: left;
+    font-size: var(--big-text);
+}
+
+.disp {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: var(--lightest-grey);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#design, #design * {
-    background-color: var(--light-red);
-    color: var(--deep-red2);
+#intuative {
+    border: 2px solid var(--lithe-red);
 }
 
-#efficiency, #efficiency * {
-    background-color: var(--celeste);
-    color: var(--celadon-blue);
+#efficiency {
+    border: 2px solid var(--lithe-blue);
 }
-
-#functionality, #functionality * {
-    background-color: var(--light-violet);
-    color: var(--purple);
-}
-
 
 #functions-list-wrapper {
     width: 30%;
+    border: 2px solid var(--lithe-green);
     border-radius: var(--border-rad);
     background-color: var(--lightest-grey);
     padding: var(--pad);
-}
-
-@keyframes fade-out {
-    from {opacity: 1}
-    to {opacity: 0}
-}
-
-@keyframes slidein {
-  from { transform: translateX(0%) }
-  to   { transform: translateX(-100%) }
 }
 
 #functions-list {
     display: inline-flex;
     flex-wrap: wrap;
-    /*animation: 5s linear 1s infinite alternate slidein;*/
 }
 
 #functions-list > * {
     border-radius: var(--border-rad);
+    font-size: var(--big-text);
     padding: var(--pad);
     margin: var(--mar);
-    background-color: var(--light-red);
-    color: var(--deep-red2);
-}
-
-#functions-list > *:nth-child(odd) {
     background-color: var(--celeste);
     color: var(--celadon-blue);
+}
+#functions-list >*:nth-child(odd) {
+    background-color: var(--lithe-green);
+    color: var(--lithe-dark-green);
+}
+
+
+#logo {
+    margin-bottom: var(--gen-mar);
 }

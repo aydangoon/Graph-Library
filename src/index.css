@@ -29,6 +29,11 @@
     --small-text: 12px;
     --title-text: 50px;
     --subtitle-text: 30px;
+
+    --lithe-blue: #b5d0ff;
+    --lithe-green: #e4f9c1;
+    --lithe-dark-green: #83b925;
+    --lithe-red: #ff6961;
 }
 
 @media only screen and (max-width: 1000px), (max-height: 900px) {
@@ -59,9 +64,13 @@
     font-family: Roboto;
     src: url('./assets/Roboto-Regular.ttf');
 }
+@font-face {
+    font-family: Lato;
+    src: url('./assets/Lato-Regular.ttf');
+}
 * {
     box-sizing: border-box;
-    font-family: Roboto;
+    font-family: Lato;
     font-size: var(--norm-text);
 }
 *:not(button):not(input) {
@@ -76,6 +85,9 @@ body {
     background-color: var(--dark-grey);
     text-align: center;
     overflow: auto;
+}
+a:hover {
+    color: var(--lithe-blue);
 }
 
 .section-label {
@@ -93,6 +105,25 @@ body {
     margin: var(--mar);
 }
 
+*[class~="subtitle"] {
+    font-size: var(--subtitle-text);
+}
+
+*[class~="lithe-blue"] {
+    color: var(--lithe-blue);
+    font-size: inherit;
+}
+
+*[class~="lithe-green"] {
+    color: var(--lithe-green);
+    font-size: inherit;
+}
+
+*[class~="lithe-red"] {
+    color: var(--lithe-red);
+    font-size: inherit;
+}
+
 #page-container {
     position: relative;
     min-height: 100vh;
@@ -100,14 +131,17 @@ body {
 }
 
 #root {
-    padding-bottom: calc(var(--mar) * 5);
+    padding-bottom: calc(var(--mar) * 10);
 }
 
 #footer {
     position: absolute;
     bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     width: 100%;
-    height: calc(var(--mar) * 5);
+    height: calc(var(--mar) * 10);
     padding: var(--pad);
     background-color: var(--lightest-grey);
     text-align: center;

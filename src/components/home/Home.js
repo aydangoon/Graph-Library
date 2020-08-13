@@ -5,40 +5,57 @@ export default class Home extends React.Component {
     render() {
         const funcs = ['Eulerian Path', 'Eulerian Circuit', 'K-Coloring', 'Minimum Spanning Tree',
         'Maximum Spanning Tree', 'Dijkstra\'s Algorithm', 'Bellman Ford Algorithm', 'Stoer Wagner Algorithm',
-        'Kosaraju\'s Algorithm', 'Breadth First Search', 'Graph Complement', 'Graph Transpose']
+        'Kosaraju\'s Algorithm', 'Breadth First Search', 'Graph Complement', 'Graph Transpose', 'And more!']
         return (
-            <div id = 'home-features-list'>
-                <div>
-                    <div className = 'title'> Welcome to [name]! </div>
-                    <img src='bonk' alt='cute image from graphing tool'></img>
-                    <div> A free, simple and efficient graphing tool for Computer Science students. </div>
-                    <a href='https://github.com'> (and now open source!) </a>
+            <div>
+                <div id = 'greeting'>
+                    <img src={require('../../assets/logo.png')} width={350} alt='logo' id='logo'></img>
+                    <div className = 'title'> Welcome to the Lithe <span className='lithe-blue'>Graphing</span> <span className='lithe-green'>Library</span></div>
                     <div>
-                        [name] is an ever evolving graphing library and tool that strives to be useful to
-                        Computer Science students through:
+                        <div className = 'subtitle'> A simple and practical graphing tool </div>
+                        <a href='https://github.com'> and now open source </a>
                     </div>
                 </div>
                 <div className = 'feature-sect'>
-                    <div id = 'design'>
-                        <div className='subtitle'>Intuative and Simple Design</div>
-                        <div> blah blah blah UX and UI choices blah blah</div>
+                    <div className = 'feature-text'>
+                        <div className='title'><span className = 'lithe-red'>Intuative</span></div>
+                        <div className='feature-paragraph'>
+                            LitheGL is designed with users in mind. Only the necessary components needed to interface
+                            with your graph are included in the build.
+                            LitheGL features simple drag and selection features
+                            alongside a suite of other tools to streamline the process of building and analyizing graphs.
+                        </div>
                     </div>
-                    <img alt='(gif of simple use)' className='disp' />
+                    <div id = 'intuative'className = 'disp'>
+                        <img src={require('../../assets/design.png')}
+                            alt='(gif of simple use)'
+                            width={700}/>
+                    </div>
                 </div>
                 <div className = 'feature-sect'>
-                    <div className = 'disp'>
-                        <img alt='why' />
+                    <div id = 'efficiency' className = 'disp'>
+                        <img width={400} src={require('../../assets/cli.png')}alt='why' />
+                        <img width={200} src={require('../../assets/cli_graph.png')}alt='why' />
                     </div>
-
-                    <div id = 'efficiency'>
-                        <div className='subtitle'> Efficiency and Coder Accessibility </div>
-                        <div> designed for programmers blah blah command line interface streamlines process blah blah </div>
+                    <div className = 'feature-text'>
+                        <div className='title'> <span className = 'lithe-blue'>Efficient</span> </div>
+                        <div className='feature-paragraph'>
+                            LitheGL features a command line interface with a set of straight forward commands
+                            that make the graph creation and editting process that much easier. The command line
+                            can be used to automate many traditional slow graph processes as well as to quickly
+                            change and analyise your graph.
+                        </div>
                     </div>
                 </div>
                 <div className = 'feature-sect'>
-                    <div id = 'functionality'>
-                        <div className='subtitle'> Large and Increasing Functionality </div>
-                        <div> [name] features an ever growing list of useful algorithms and features. </div>
+                    <div className = 'feature-text'>
+                        <div className='title'> <span className = 'lithe-green'>Functional </span> </div>
+                        <div className='feature-paragraph'>
+                            LitheGL features an ever growing list of useful algorithms and features.
+                            All the common algorithms learned in introductory Computer Science classes are included
+                            as well as algorithms for quickly changing graph state. As LitheGL is still in development,
+                            more are to come!
+                        </div>
                     </div>
                     <div className='disp' id = 'functions-list-wrapper'>
                         <div id = 'functions-list'>
