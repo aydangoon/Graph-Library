@@ -1,23 +1,26 @@
 {
   "files": {
-    "main.css": "/Graph-Library/static/css/main.09bc08c5.chunk.css",
-    "main.js": "/Graph-Library/static/js/main.3954caed.chunk.js",
-    "main.js.map": "/Graph-Library/static/js/main.3954caed.chunk.js.map",
+    "main.css": "/Graph-Library/static/css/main.330a4477.chunk.css",
+    "main.js": "/Graph-Library/static/js/main.9efdde6c.chunk.js",
+    "main.js.map": "/Graph-Library/static/js/main.9efdde6c.chunk.js.map",
     "runtime-main.js": "/Graph-Library/static/js/runtime-main.2e52fc0d.js",
     "runtime-main.js.map": "/Graph-Library/static/js/runtime-main.2e52fc0d.js.map",
-    "static/js/2.f93f0374.chunk.js": "/Graph-Library/static/js/2.f93f0374.chunk.js",
-    "static/js/2.f93f0374.chunk.js.map": "/Graph-Library/static/js/2.f93f0374.chunk.js.map",
+    "static/js/2.f4af0858.chunk.js": "/Graph-Library/static/js/2.f4af0858.chunk.js",
+    "static/js/2.f4af0858.chunk.js.map": "/Graph-Library/static/js/2.f4af0858.chunk.js.map",
     "index.html": "/Graph-Library/index.html",
-    "precache-manifest.6e6b2266ce03f1b66ca826bee2220a19.js": "/Graph-Library/precache-manifest.6e6b2266ce03f1b66ca826bee2220a19.js",
+    "precache-manifest.2c101128a8a2e264d081f444126a6ce6.js": "/Graph-Library/precache-manifest.2c101128a8a2e264d081f444126a6ce6.js",
     "service-worker.js": "/Graph-Library/service-worker.js",
-    "static/css/main.09bc08c5.chunk.css.map": "/Graph-Library/static/css/main.09bc08c5.chunk.css.map",
-    "static/js/2.f93f0374.chunk.js.LICENSE.txt": "/Graph-Library/static/js/2.f93f0374.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/Graph-Library/static/media/SourceSansPro-Light.81cd217e.ttf"
+    "static/css/main.330a4477.chunk.css.map": "/Graph-Library/static/css/main.330a4477.chunk.css.map",
+    "static/js/2.f4af0858.chunk.js.LICENSE.txt": "/Graph-Library/static/js/2.f4af0858.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/Graph-Library/static/media/SourceSansPro-Light.81cd217e.ttf",
+    "static/media/cli.png": "/Graph-Library/static/media/cli.cb7b3575.png",
+    "static/media/design.png": "/Graph-Library/static/media/design.a4612783.png",
+    "static/media/logo.png": "/Graph-Library/static/media/logo.2ea05aa1.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2e52fc0d.js",
-    "static/js/2.f93f0374.chunk.js",
-    "static/css/main.09bc08c5.chunk.css",
-    "static/js/main.3954caed.chunk.js"
+    "static/js/2.f4af0858.chunk.js",
+    "static/css/main.330a4477.chunk.css",
+    "static/js/main.9efdde6c.chunk.js"
   ]
 }
