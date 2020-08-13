@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "http://aydangoon.github.io/Graph-Library",
+  "homepage": "http://aydangoon.github.io/Graph-Library/home",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

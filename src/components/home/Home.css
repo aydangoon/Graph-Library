@@ -9,12 +9,14 @@
 
 #greeting {
     padding: var(--gen-pad);
+    animation: fade-in 1s;
 }
 #greeting > * {
     margin: var(--gen-mar);
 }
 
 .feature-sect {
+    animation: fade-in 2s;
     overflow: hidden;
     display: flex;
     padding: var(--gen-pad);
@@ -36,9 +38,11 @@
 }
 
 .feature-paragraph {
-    width: 50%;
+    width: 60%;
     text-align: left;
+    line-height: 30px;
     font-size: var(--big-text);
+    padding: var(--gen-pad);
 }
 
 .disp {
@@ -83,7 +87,41 @@
     color: var(--lithe-dark-green);
 }
 
-
 #logo {
     margin-bottom: var(--gen-mar);
+}
+
+#features {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 50%;
+    margin: auto;
+    margin-bottom: var(--gen-mar);
+}
+#features > * {
+    padding: var(--pad);
+    margin: var(--mar);
+    flex-basis: 50%;
+}
+.features-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.features-list > * {
+    padding: var(--pad);
+    margin: var(--mar);
+    background-color: var(--lightest-grey);
+    border-radius: var(--border-rad);
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.features-list > * > * {
+    padding: var(--pad);
 }

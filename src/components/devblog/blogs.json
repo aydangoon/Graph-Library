@@ -1,0 +1,112 @@
+[
+    {
+    "title": "Managing Graph State History",
+    "content": [
+        {
+            "type":"p",
+            "content": ["An important design challenge in my graphing implementation was how to manage graph state and state history. These features were necessary because ",
+                        "I wanted the graph’s state to be mutable not only by the command line and mouse actions on the display, but also by undo, redo, and reset buttons. ",
+                        "So how should state be implemented?"]
+        },
+        {
+            "type":"p",
+            "content": ["The obvious solution was through deep object cloning. Everytime the graph would be changed by an action, a cloned graph would be made, ",
+                        "changed according to the action, and used as the new state, while the old graph would be stored in memory. There were two major flaws ",
+                        "with this approach. Graphs are decently large objects and thus deep cloning and storing graphs that may only differ by a single edge or ",
+                        "node represents a clear lack of memory efficiency. Additionally, graphs are nested objects with a depth of around three to four, and React ",
+                        "offers neither a simple nor clean solution to this kind of deep cloning."]
+        },
+        {
+            "type":"p",
+            "content": ["Since the traditional approach would be inefficient and annoying, I adopted an action-based model of state. This means a graph is represented ",
+                        "as a stack of actions done on a common set of nodes and edges."]
+        },
+        {
+            "type": "i",
+            "src": "action_stack_1.png",
+            "width": 150,
+            "desc": "Action Stack: Add 1, Add 2"
+        },
+        {
+            "type": "i",
+            "width": 150,
+            "src": "action_stack_2.png",
+            "desc": "Action Stack: Add 1, Add 2, Remove 1"
+        },
+        {
+            "type": "p",
+            "content": ["This improved memory efficiency because nodes and edges did not need to be copied between different graph states. In fact, since the ",
+                        "fundamental objects of the graph did not change between states, cloning was not necessary at all. "]
+        },
+        {
+            "type": "p",
+            "content": ["An issue that arose with this model was that certain actions implicitly demand other actions. For example, if we had a graph of two nodes, ",
+                        "node 1 and node 2, connected by an edge, removing either node inherently requires the edge between them also be removed. This presents no ",
+                        "problem for deep cloning state management since everything about the graph’s state is always explicitly stored, but for an action-based model, ",
+                        "I needed to code a solution."]
+        },
+        {
+            "type": "p",
+            "content": ["I ended up having “actions” be either arrays of actions or a single action. So in the previous example, removing node 2 would be stored as ",
+                        "[Remove 2, Remove 2 to 1]. These action arrays could be recursively nested depending on the complexity of the action. This ended up being a ",
+                        "good solution, and saved me a lot of hassle and refactoring throughout the development process."]
+        },
+        {
+            "type":"p",
+            "content":["As for history management, I worked my solution around four features I wanted:"]
+        },
+        {
+            "type":"l",
+            "content":["All actions can be undone.", "Any action that is undone can be redone.",
+                        "An action committed during a previous state deletes the old branch of actions and starts a new branch.",
+                        "The last action committed is the first to be undoable and likewise the last action undone is the first to be redoable. "]
+        },
+        {
+            "type":"p",
+            "content": ["From these observations I elected to store history with two bounded stacks, one for undoing and the other for redoing.",
+                        "Actions are added to the undo stack. If they are then undone the action is popped from the undo stack and pushed to the ",
+                        "redo stack. Then if they are redone the action leaves memory. The stacks are bound to 10 actions simply for memory management, ",
+                        "but since the action model is not memory intensive, I will probably increase this to 30 or 40 in the future. "]
+        }
+    ]
+},
+    {
+        "title": "Edge Clicking Collision",
+        "content": [
+            {
+                "type":"p",
+                "content":["Because I wanted to build as much of this tool as possible without libraries, I had to implement my ",
+                    "own collision detection system between a mouse click and an edge. With some basic linear algebra, I found a ",
+                    "solution, although I would bet it is far from optimal."]
+            },
+            {
+                "type":"p",
+                "content":["I decided to use a rectangular hitbox for edges as it was not very computationally expensive. ",
+                    "Since these rectangular hitboxes are on rotations, linear algebra was necessary. For each edge I created two base vectors: ",
+                    "u, v, that represented the hitbox. Then I calculated the vector w that is the vector representation of the mouse click with ",
+                    "respect to the origin of the u, v coordinated system. To determine if w landed within the hitbox, I realized that if the magnitude ",
+                    "of w projected onto u was less than the magnitude of u and the magnitude of w projected onto v was less than the magnitude of v, ",
+                    "the mouse click was within the edge’s hitbox (additionally the signs of the projects would have to be the same as that of u and v). ",
+                    "So all in all a mouse click calculation looked like this:"]
+            },
+            {
+                "type":"i",
+                "src":"ecc1.png",
+                "width": 400,
+                "desc":"initial state"
+            },
+            {
+                "type":"i",
+                "src":"ecc2.png",
+                "width": 400,
+                "desc":"calculate base vectors"
+            },
+            {
+                "type":"i",
+                "src":"ecc3.png",
+                "width": 400,
+                "desc":"check for projection on both base vectors"
+            }
+        ]
+    }
+]

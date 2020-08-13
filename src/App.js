@@ -10,11 +10,12 @@ function App() {
     return (
             <Router>
                 <MenuBar />
-                <Route path="/" exact component={Home} />
-                <Route path="/home" component={Home} />
-                <Route path="/devblog" component={DevBlog} />
-                <Route path="/tutorial" component={Tutorial} />
-                <Route path="/graph" component={GraphTool} />
+                <Route path={"/"} exact component={Home} />
+                <Route path={"/Graph-Library"} exact component={Home} />
+                <Route path="/Graph-Library/home" component={Home} />
+                <Route path="/Graph-Library/devblog" component={DevBlog} />
+                <Route path="/Graph-Library/tutorial" component={Tutorial} />
+                <Route path="/Graph-Library/graph" component={GraphTool} />
             </Router>
     )
 }

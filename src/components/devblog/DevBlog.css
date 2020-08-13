@@ -1,0 +1,38 @@
+#main-title {
+    animation: fade-in 1s;
+    margin: var(--gen-mar);
+}
+
+.post-content {
+    animation: fade-in 2s;
+    padding: var(--pad);
+    border-radius: var(--border-rad);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--lightest-grey);
+    width: 50%;
+    margin: auto;
+    margin-bottom: var(--gen-mar);
+    margin-top: var(--gen-mar);
+}
+.post-content > * {
+    padding: var(--pad);
+    margin: var(--mar);
+    text-align: left;
+}
+
+.post-image {
+    border: 2px solid var(--light-grey);
+    border-radius: var(--border-rad);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--pad);
+    margin: var(--mar);
+}
+.post-image > * {
+    padding: var(--pad);
+}

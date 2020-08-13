@@ -6,10 +6,10 @@ export default class Home extends React.Component {
     render() {
         return (
             <div id = 'menubar'>
-                <Link to="/home">Home</Link>
-                <Link to="/tutorial">Tutorials</Link>
-                <Link to="/graph">Graph</Link>
-                <Link to="/devblog">Dev Blog</Link>
+                <Link to="/Graph-Library/home">Home</Link>
+                <Link to="/Graph-Library/tutorial">Tutorials</Link>
+                <Link to="/Graph-Library/graph">Graph</Link>
+                <Link to="/Graph-Library/devblog">Dev Blog</Link>
             </div>
         )
     }
