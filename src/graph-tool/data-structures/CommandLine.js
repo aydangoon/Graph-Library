@@ -31,7 +31,7 @@ export default function CommandLine() {
             switch(params[0]) {
                 case 'bfs':
                 case 'cc':
-                case 'colorall':
+                case 'bipartite':
                 case 'trans':
                 case 'clear':
                 case 'kosaraju':

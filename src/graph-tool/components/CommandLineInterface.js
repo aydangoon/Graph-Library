@@ -99,7 +99,8 @@ export class CLI extends React.Component {
                     case 'color edge':
                         actions.push(Visualizations.color(graph, [pc[1], pc[2]], pc[3], false))
                     break
-                    case 'colorall':
+                    case 'bipartite':
+                        console.log('bitch')
                         actions.push(Visualizations.colorAll(graph))
                     break;
                     case 'trans':

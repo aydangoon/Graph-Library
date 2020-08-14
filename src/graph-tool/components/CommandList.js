@@ -37,7 +37,7 @@ export class CommandList extends React.Component {
                     {Command('eulpat', 'Visualizes an eulerian path if one exists.', ['undirected'])}
                     {Command('comp', 'Turns the graph into its complement.', ['undirected'])}
                     {Command('clear', 'Deletes all edges and nodes in the graph.')}
-                    {Command('colorall', 'Colors the graph with up to 4 colors.')}
+                    {Command('bipartite', 'Colors bipartite graphs', ['bipartite'])}
                     {Command('color [u] [col]', 'Changes the color of node u to col. col can be one of the following letters: r, g, b or v.')}
                     {Command('color [u] [v] [col]', 'Changes the color of edge (u, v) to col. col can be one of the following letters: r, g, b or v.')}
                     {Command('kosaraju', 'Transforms the graph into its corresponding strongly connected component graph.', ['directed'])}

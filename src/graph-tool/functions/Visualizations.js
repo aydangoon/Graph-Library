@@ -147,18 +147,18 @@ export function colorAll(graph) {
         ncolor[node] = 0
     })
     raw.getNodes().forEach(node => {
-        let goodCols = [1, 2, 3, 4]
+        let goodCols = [1, 2]
         raw.getAdjacencyList(node).forEach(node2 => {
             if (ncolor[node2] !== 0) {
                 let index = goodCols.indexOf(ncolor[node2])
                 if (index !== -1) {
                     goodCols.splice(index, 1)
                 }
-
             }
+            raw.removeEdge(node, node2)
         })
         if (goodCols.length === 0) {
-            throw 'graph is not 4-colorable.'
+            throw 'graph is not bipartite.'
         }
         ncolor[node] = goodCols[0]
     })
