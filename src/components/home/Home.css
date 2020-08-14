@@ -89,6 +89,20 @@
 
 #logo {
     margin-bottom: var(--gen-mar);
+    width: 50%;
+    max-width: 350px;
+}
+
+#intuitive-img {
+    width: calc(var(--image-scale) * 7);
+}
+
+#eff-img-1 {
+    width: calc(var(--image-scale) * 4);
+}
+
+#eff-img-2 {
+    width: calc(var(--image-scale) * 2);
 }
 
 #features {

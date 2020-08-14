@@ -29,6 +29,7 @@
     --small-text: 12px;
     --title-text: 50px;
     --subtitle-text: 30px;
+    --image-scale: 100px;
 
     --lithe-blue: #b5d0ff;
     --lithe-green: #e4f9c1;
@@ -45,6 +46,7 @@
         --subtitle-text: 20px;
         --pad: 3px;
         --mar: 3px;
+        --image-scale: 50px;
     }
 }
 
@@ -132,7 +134,6 @@ a:hover {
 #page-container {
     position: relative;
     min-height: 100vh;
-    overflow: auto;
 }
 
 #root {

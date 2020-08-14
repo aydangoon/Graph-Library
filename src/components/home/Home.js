@@ -24,7 +24,7 @@ export default class Home extends React.Component {
         return (
             <div>
                 <div id = 'greeting'>
-                    <img src={require('../../assets/logo.png')} width={350} alt='logo' id='logo'></img>
+                    <img src={require('../../assets/logo.png')} alt='logo' id='logo'></img>
                     <div className = 'title'> Welcome to the Lithe <span className='lithe-blue'>Graphing</span> <span className='lithe-green'>Library</span></div>
                     <div>
                         <div className = 'subtitle'> A simple and practical graphing tool </div>
@@ -41,16 +41,15 @@ export default class Home extends React.Component {
                             alongside a suite of other tools to streamline the process of building and analyizing graphs.
                         </div>
                     </div>
-                    <div id = 'intuative'className = 'disp'>
-                        <img src={require('../../assets/design.png')}
-                            alt='(gif of simple use)'
-                            width={700}/>
+                    <div id = 'intuative' className = 'disp'>
+                        <img id = 'intuitive-img' src={require('../../assets/design.png')}
+                            alt='(gif of simple use)'/>
                     </div>
                 </div>
                 <div className = 'feature-sect'>
                     <div id = 'efficiency' className = 'disp'>
-                        <img width={400} src={require('../../assets/cli.png')}alt='why' />
-                        <img width={200} src={require('../../assets/cli_graph.png')}alt='why' />
+                        <img id='eff-img-1'  src={require('../../assets/cli.png')}alt='why' />
+                        <img id='eff-img-2' src={require('../../assets/cli_graph.png')}alt='why' />
                     </div>
                     <div className = 'feature-text'>
                         <div className='title'> <span className = 'lithe-blue'>Efficient</span> </div>
