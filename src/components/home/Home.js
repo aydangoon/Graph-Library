@@ -28,12 +28,12 @@ export default class Home extends React.Component {
                     <div className = 'title'> Welcome to the Lithe <span className='lithe-blue'>Graphing</span> <span className='lithe-green'>Library</span></div>
                     <div>
                         <div className = 'subtitle'> A simple and practical graphing tool </div>
-                        <a href='https://github.com'> and now open source </a>
+                        <a href='https://github.com/aydangoon/Graph-Library'> and now open source </a>
                     </div>
                 </div>
                 <div className = 'feature-sect'>
                     <div className = 'feature-text'>
-                        <div className='title'><span className = 'lithe-red'>Intuative</span></div>
+                        <div className='title'><span className = 'lithe-red'>Intuitive</span></div>
                         <div className='feature-paragraph'>
                             LitheGL is designed with users in mind. Only the necessary components needed to interface
                             with your graph are included in the build.
