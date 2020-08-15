@@ -136,7 +136,8 @@ export class GraphRender extends React.Component {
                     cmds.push('del ' + this.state.selectedNode.label)
                     this.setState({selectedNode: null})
                 }
-                if (this.state.selectedEdges != []) {
+                if (this.state.selectedEdges.length > 0) {
+                    e.preventDefault()
                     this.state.selectedEdges.forEach(edge => {
                         if (this.props.graph.hasEdge(edge)) {
                             actions.push(new Action('delete edge', this.props.graph.removeEdge(edge)))
@@ -159,8 +160,8 @@ export class GraphRender extends React.Component {
     getMouseInput(e) {
         const canvas = this.canvasRef.current
         const rect = canvas.getBoundingClientRect()
-        const x = (e.clientX - rect.left) // / canvas.clientWidth ADD THIS SHIT LATER!
-        const y = (e.clientY - rect.top) // / canvas.clientHeight
+        const x = (e.clientX - rect.left)
+        const y = (e.clientY - rect.top)
         return {x, y}
     }
 

@@ -113,9 +113,9 @@ export function exhaustiveBFS(raw) {
     let ccs = 0
     let nonSingletons = 0
     let cycle = false
-    let bipartite = true
-    let parentOf = {}
     let nodes = raw.getNodes()
+    let bipartite = nodes.length > 0
+    let parentOf = {}
     nodes.forEach(node => {parentOf[node] = null})
 
     while (nodes.length > 0) {
@@ -135,7 +135,7 @@ export function exhaustiveBFS(raw) {
         nonSingletons: nonSingletons,
         acyclic: (!cycle).toString(),
         tree: (ccs === 1 && !cycle).toString(),
-        forest: (ccs >= 1 && !cycle).toString(),
+        forest: (ccs >= 0 && !cycle).toString(),
         bipartite: bipartite.toString()
     }
 }

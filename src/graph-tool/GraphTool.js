@@ -157,6 +157,9 @@ export default class GraphTool extends React.Component {
                     case 'eulerian mark':
                         item.edge.eulerianMarker = item.mark
                     break
+                    case 'set weight':
+                        graph.setWeight(item.u, item.v, item.nw)
+                    break
                 }
             }
         })
@@ -206,6 +209,9 @@ export default class GraphTool extends React.Component {
                     case 'eulerian mark':
                         item.edge.eulerianMarker = item.prev
                     break
+                    case 'set weight':
+                        graph.setWeight(item.u, item.v, item.pw)
+                    break
                 }
             }
         }
@@ -221,10 +227,10 @@ export default class GraphTool extends React.Component {
 
     render() {
 
-        // console.log('__________________________')
+        //console.log('__________________________')
         // console.log(this.state.graph.directed)
-        // console.log(this.state.graph.edges)
-        // console.log(this.state.graph.raw.al)
+        //console.log(this.state.graph.edges)
+        //console.log(this.state.graph.raw.al)
 
         return (
             <div id = 'graph-tool-wrapper'>

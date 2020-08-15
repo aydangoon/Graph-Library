@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import blogs from './blogs.json'
 import './DevBlog.css'

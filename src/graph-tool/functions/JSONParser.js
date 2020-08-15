@@ -23,7 +23,7 @@ export default function parseJSONInput(fgraph) {
     nodes.forEach(nv => {
         if (!nv.hasOwnProperty('label')) {
             throw 'a node is missing a label'
-        } else if (nv.label.includes('+')) {
+        } else if (nv.label.includes(' ')) {
             throw 'a node label contains an invalid character'
         }
         let nvl = 'node ' + nv.label

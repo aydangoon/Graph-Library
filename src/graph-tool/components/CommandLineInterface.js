@@ -59,9 +59,12 @@ export class CLI extends React.Component {
                                 if (w === undefined) {
                                     throw 'edge already exists.'
                                 }
+                                actions.push(new Action('set weight', {u, v, pw: graph.getWeight(u, v).toString(), nw: w}))
+                                //console.log('adding new action', {u, v, pw: graph.getWeight(u, v).toString(), nw: w})
                                 graph.setWeight(u, v, w)
+                            } else {
+                                actions.push(new Action('add edge', graph.addEdge(u, v, style, w)))
                             }
-                            actions.push(new Action('add edge', graph.addEdge(u, v, style, w)))
                         } else {
                             throw 'no such nodes.'
                         }

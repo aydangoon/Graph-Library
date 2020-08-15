@@ -271,15 +271,19 @@ export function eulerianPath(graph) {
 
 // not the greatest implementation. Try and improve this later on.
 export function stoerWagner(graph) {
-
     if (graph.directed) {
         throw 'cannot do Stoer Wagner on directed graph.'
     }
-
+    
     let raw = graph.getRawGraph()
+    if (Graphing.exhaustiveBFS(raw).ccs > 1) {
+        throw 'graph is already cut.'
+    }
+
     raw.weighted = true
     let minCut = 9999
     let fg1, fg2
+    let safety = 0
     while (raw.getNodes().length > 1) {
         let {g1, g2, cutOfThePhase} = stoerWagnerHelp(raw)
         if (cutOfThePhase < minCut) {
@@ -287,6 +291,8 @@ export function stoerWagner(graph) {
             fg2 = g2
             minCut = cutOfThePhase
         }
+        safety++
+        if (safety > 20) {throw 'safety triggered'}
     }
     let actions = [new Action('stowag')]
     let group1 = (fg1.map(gn => gn.split('').filter(l => l !== '(' && l !== ')'))).toString().split(',')
@@ -303,30 +309,33 @@ export function stoerWagner(graph) {
 
 function stoerWagnerHelp(raw) {
     let nodes = raw.getNodes()
-    let curr = nodes[0]
-    let visited = [curr]
-    while (visited.length !== nodes.length - 1) {
-        let adjList = raw.getAdjacencyList(curr)
-        let toAdd
+    let a = nodes[0]
+    let visited = [a]
+    let safety = 0
+    while (visited.length !== nodes.length) {
+        let toAdd = null
         let largestConnection = 0
-        adjList.forEach(other => {
-            if (visited.indexOf(other) === -1) {
-                let weightToVisited = 0
-                visited.forEach(vNode => {
-                    if (raw.hasEdge(vNode, other)) {
-                        weightToVisited += raw.getWeight(vNode, other)
-                    }
-                })
-                if (weightToVisited > largestConnection) {
-                    toAdd = other
-                    largestConnection = weightToVisited
+        nodes.forEach(node => {
+            if (visited.indexOf(node) !== -1) {
+                return
+            }
+            let weightToVisited = 0
+            raw.getAdjacencyList(node).forEach(other => {
+                if (visited.indexOf(other) !== -1) {
+                    weightToVisited += raw.getWeight(node, other)
                 }
+            })
+            if (weightToVisited > largestConnection) {
+                toAdd = node
+                largestConnection = weightToVisited
             }
         })
         visited.push(toAdd)
-        curr = toAdd
+
+        safety++
+        if (safety > 100) {throw 'stoer wagner helper safety triggered'}
     }
-    let t = nodes.filter(node => visited.indexOf(node) === -1)[0]
+    let t = visited.pop()
     let s = visited[visited.length - 1]
     let merge = '(' + s + t + ')'
     raw.addNode(merge)

@@ -10,8 +10,8 @@ function App() {
     return (
             <Router>
                 <MenuBar />
-                <Route path={"/"} exact component={Home} />
-                <Route path={"/Graph-Library"} exact component={Home} />
+                <Route path={"/"} exact component={GraphTool} />
+                <Route path={"/Graph-Library"} exact component={GraphTool} />
                 <Route path="/Graph-Library/home" component={Home} />
                 <Route path="/Graph-Library/devblog" component={DevBlog} />
                 <Route path="/Graph-Library/tutorial" component={Tutorial} />

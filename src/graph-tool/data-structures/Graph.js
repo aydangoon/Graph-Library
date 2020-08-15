@@ -160,6 +160,13 @@ export default function Graph(directed = true, weighted = false) {
     }
 
     this.setWeight = (u, v, w) => {
+        let key = this.edgeKey(u, v)
+        let opkey = this.edgeKey(v, u)
+        if (this.edges.hasOwnProperty(key)) {
+            this.edges[key].weight = w
+        } else if (!this.directed && this.edges.hasOwnProperty(opkey)) {
+            this.edges[opkey].weight = w
+        }
         this.raw.setWeight(u, v, w)
     }
 
