@@ -1,4 +1,20 @@
 #tutorial {
-    margin-top: 20%;
     animation: fade-in 1s;
+}
+
+*[class~='video-sect'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    margin-top: var(--gen-mar);
+
+}
+*[class~='video-sect'] > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: var(--mar);
 }

@@ -1,7 +1,12 @@
 import React from 'react'
+import { clearVisualizations } from '../functions/Visualizations.js'
 import './css/ToolBar.css'
 
 export class StateManager extends React.Component {
+
+    clearVisualizations() {
+        this.props.handleActions(clearVisualizations(this.props.graph), ['clearvis'])
+    }
     render() {
         const clear = this.props.clearFunc
         const undo = this.props.undoFunc
@@ -17,6 +22,9 @@ export class StateManager extends React.Component {
                         <button onClick={redo} disabled={!this.props.canRedo}> redo </button>
                     </div>
                     <div>
+                        <button onClick={() => this.clearVisualizations()}>clear visualizations</button>
+                    </div>
+                    <div>
                         <input type='checkbox' defaultChecked={true}
                             onClick={(cb) => {changeFunc('directed', cb.target.checked)}}
                             disabled={this.props.edgeCount > 0} />
@@ -26,13 +34,13 @@ export class StateManager extends React.Component {
                         <input type='checkbox' onClick={(cb) => {changeFunc('weighted', cb.target.checked)}} />
                         <span>weighted</span>
                     </div>
-                    <div>
+                    {/*<div>
                         <input type='checkbox'
                             onClick={(cb) => {changeFunc('simple', cb.target.checked)}}
                             defaultChecked={true}
                             disabled={true}/>
                         <span>simple</span>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         )

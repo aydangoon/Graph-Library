@@ -65,7 +65,7 @@ export default function Graph(directed = true, weighted = false) {
             const style = arguments[2]
             const uNode = this.nodes[u]
             const vNode = this.nodes[v]
-            weight = arguments[3] !== undefined ? (isNaN(arguments[3]) ? 1 : parseInt(arguments[3])) : style.weight
+            weight = arguments[3] !== undefined ? parseInt(arguments[3]) : style.weight
             edge = new Edge(uNode, vNode, style.edgeColor, weight)
         }
 
@@ -160,14 +160,15 @@ export default function Graph(directed = true, weighted = false) {
     }
 
     this.setWeight = (u, v, w) => {
+        let nw = parseInt(w)
         let key = this.edgeKey(u, v)
         let opkey = this.edgeKey(v, u)
         if (this.edges.hasOwnProperty(key)) {
-            this.edges[key].weight = w
+            this.edges[key].weight = nw
         } else if (!this.directed && this.edges.hasOwnProperty(opkey)) {
-            this.edges[opkey].weight = w
+            this.edges[opkey].weight = nw
         }
-        this.raw.setWeight(u, v, w)
+        this.raw.setWeight(u, v, nw)
     }
 
     this.getAllEdgesIncidentOn = (node) => {

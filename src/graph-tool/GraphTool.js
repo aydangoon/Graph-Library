@@ -228,7 +228,7 @@ export default class GraphTool extends React.Component {
     render() {
 
         //console.log('__________________________')
-        // console.log(this.state.graph.directed)
+        //console.log(this.state.graph.directed)
         //console.log(this.state.graph.edges)
         //console.log(this.state.graph.raw.al)
 
@@ -258,6 +258,8 @@ export default class GraphTool extends React.Component {
                                 toolSettings={this.state.toolSettings}
                                 changeFunc={this.changeToolSetting} />
                             <StateManager
+                                handleActions={this.handleActions}
+                                graph={this.state.graph}
                                 clearFunc={this.clear}
                                 undoFunc={this.undo}
                                 redoFunc={this.redo}

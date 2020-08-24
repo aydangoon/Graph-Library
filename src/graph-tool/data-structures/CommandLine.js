@@ -43,6 +43,7 @@ export default function CommandLine() {
                 case 'eulcirc':
                 case 'eulpat':
                 case 'stowag':
+                case 'clearvis':
                     return params
                 case 'del':
                     return Parser.parseDel(params)

@@ -55,6 +55,9 @@ export class CLI extends React.Component {
                             throw 'no self edges.'
                         }
                         if (graph.hasNode(u) && graph.hasNode(v)) {
+                            if (w !== undefined && isNaN(w)) {
+                                throw 'edge weight is not a number'
+                            }
                             if (graph.hasEdge(u, v)) {
                                 if (w === undefined) {
                                     throw 'edge already exists.'
@@ -112,6 +115,9 @@ export class CLI extends React.Component {
                     break
                     case 'clear':
                         actions.push(Transformations.clear(graph))
+                    break
+                    case 'clearvis':
+                        actions.push(Visualizations.clearVisualizations(graph))
                     break
                     case 'kosaraju':
                         actions.push(Transformations.kosaraju(graph, style))

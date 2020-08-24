@@ -24,6 +24,9 @@ export function color(graph, obj, color, isNode = true) {
         case 'g':
             rgbCol = Colors.LIGHT_GREEN
         break
+        case 'bl':
+            rgbCol = '#000000'
+        break
         default:
             throw 'no such color.'
     }
@@ -268,13 +271,31 @@ export function eulerianPath(graph) {
     return actions
 }
 
-
+export function clearVisualizations(graph) {
+    let raw = graph.getRawGraph()
+    let edges = raw.getEdges()
+    let nodes = raw.getNodes()
+    let actions = [new Action('clearvis')]
+    edges.forEach(([u, v]) => {
+        actions.push(color(graph, [u, v], 'bl', false))
+        let edge = graph.getEdge(u, v)
+        if (edge.eulerianMarker !== null) {
+            //console.log('edge', u, v, 'has eul mark', edge.eulerianMarker)
+            actions.push(new Action('eulerian mark', {edge, prev: edge.eulerianMarker, mark: null}))
+            edge.eulerianMarker = null
+        }
+    })
+    nodes.forEach(n => {
+        actions.push(color(graph, n, 'bl'))
+    })
+    return actions
+}
 // not the greatest implementation. Try and improve this later on.
 export function stoerWagner(graph) {
     if (graph.directed) {
         throw 'cannot do Stoer Wagner on directed graph.'
     }
-    
+
     let raw = graph.getRawGraph()
     if (Graphing.exhaustiveBFS(raw).ccs > 1) {
         throw 'graph is already cut.'

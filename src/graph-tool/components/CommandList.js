@@ -37,9 +37,10 @@ export class CommandList extends React.Component {
                     {Command('eulpat', 'Visualizes an eulerian path if one exists.', ['undirected'])}
                     {Command('comp', 'Turns the graph into its complement.', ['undirected'])}
                     {Command('clear', 'Deletes all edges and nodes in the graph.')}
+                    {Command('clearvis', 'Clears all visualization artifacts on graph. This includes eulerian markers, dijkstra markers, etc.')}
                     {/*Command('bipartite', 'Colors bipartite graphs', ['bipartite'])*/}
-                    {Command('color [u] [col]', 'Changes the color of node u to col. col can be one of the following letters: r, g, b or v.')}
-                    {Command('color [u] [v] [col]', 'Changes the color of edge (u, v) to col. col can be one of the following letters: r, g, b or v.')}
+                    {Command('color [u] [col]', 'Changes the color of node u to col. col can be one of the following letters: r (red), g (green), b (blue), v (violet), bl (black).')}
+                    {Command('color [u] [v] [col]', 'Changes the color of edge (u, v) to col. col can be one of the following letters: r (red), g (green), b (blue), v (violet), bl (black).')}
                     {Command('kosaraju', 'Transforms the graph into its corresponding strongly connected component graph.', ['directed'])}
                     {Command('dijkstra [u] [v]', 'Colors the shortest path from nodes u to v if such a path exists.', ['weighted', 'non-negative'])}
                     {Command('belford [u] [v]', 'Colors the shortest path from nodes u to v if such a path exists.', ['weighted', 'no negative cycles'])}
