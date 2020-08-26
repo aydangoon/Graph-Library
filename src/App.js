@@ -1,10 +1,14 @@
+// @fileoverview Main App component. 
+
+/* eslint-disable */
+
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import GraphTool from './graph-tool/GraphTool.js'
-import Home from './components/home/Home.js'
-import MenuBar from './components/menubar/MenuBar.js'
-import Tutorial from './components/tutorial/Tutorial.js'
-import DevBlog from './components/devblog/DevBlog.js'
+import GraphTool from './graph-tool/components/graphtool.js'
+import Home from './components/home/home.js'
+import MenuBar from './components/menubar/menubar.js'
+import Tutorial from './components/tutorial/tutorial.js'
+import DevBlog from './components/devblog/devblog.js'
 
 function App() {
     return (

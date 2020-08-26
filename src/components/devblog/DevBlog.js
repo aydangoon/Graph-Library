@@ -1,7 +1,11 @@
+// @fileoverview React Component for the Dev Blog tab. Reads data from the
+// blogs.json file
+
 /* eslint-disable */
+
 import React from 'react'
 import blogs from './blogs.json'
-import './DevBlog.css'
+import './devblog.css'
 
 export default class DevBlog extends React.Component {
 

@@ -1,9 +1,22 @@
-/* eslint-disable */
-import Action from '../data-structures/Action.js'
-import MinHeap from '../data-structures/heaps/MinHeap.js'
-import * as Colors from '../assets/Colors.js'
-import * as Graphing from './Graphing.js'
+// @fileoverview A collection of functions that transform the state of the graph.
+// Each function changes the graph object's state in some way, and returns a list
+// of actions corresponding to what those changes were.
 
+/* eslint-disable */
+
+import Action from '../../data-structures/action.js'
+import MinHeap from '../../data-structures/heaps-and-stacks/minheap.js'
+import * as colors from '../../assets/colors.js'
+import * as graphing from './graphing.js'
+
+// Colors a node or edge a certain color.
+// @param {!Graph} graph: The graph upon which the node or edge to be
+// colored is contained
+// @param {string | string[]} obj: Either the node label, or an array
+// containing 2 node labels that represent the edge
+// @param {string} color: the string identifier of the color. i.e.
+// "bl", "g", "v", etc.
+// @param {boolean} isNode: if the object is a node
 export function color(graph, obj, color, isNode = true) {
     if (isNode && !graph.hasNode(obj)) {
         throw 'node does not exist.'
@@ -13,20 +26,20 @@ export function color(graph, obj, color, isNode = true) {
     let rgbCol
     switch (color) {
         case 'v':
-            rgbCol = Colors.DARK_VIOLET
-        break
+            rgbCol = colors.DARK_VIOLET
+            break
         case 'b':
-            rgbCol = Colors.LIGHT_BLUE
-        break
+            rgbCol = colors.LIGHT_BLUE
+            break
         case 'r':
-            rgbCol = Colors.LIGHT_RED
-        break
+            rgbCol = colors.LIGHT_RED
+            break
         case 'g':
-            rgbCol = Colors.LIGHT_GREEN
-        break
+            rgbCol = colors.LIGHT_GREEN
+            break
         case 'bl':
             rgbCol = '#000000'
-        break
+            break
         default:
             throw 'no such color.'
     }
@@ -44,6 +57,11 @@ export function color(graph, obj, color, isNode = true) {
     }
 }
 
+// Runs dijkstra's on the graph and colors the shortest path between
+// two specified nodes.
+// @param {!Graph} graph: the graph upon which the path will be shown
+// @param {string} s: the source node label
+// @param {string} e: the end node label
 export function dijkstra(graph, s, e) {
     if (s === undefined || e === undefined || !graph.hasNode(s) || !graph.hasNode(e)) {
         throw 'source or end node not in graph.'
@@ -94,6 +112,11 @@ export function dijkstra(graph, s, e) {
     return actions
 }
 
+// Runs Bellman Ford's algorithm on a graph and colors the shortest path
+// between two specified nodes.
+// @param {!Graph} graph: the graph upon which the path will be shown
+// @param {string} s: the source node label
+// @param {string} e: the end node label
 export function bellmanFord(graph, s, e) {
 
     if (!graph.hasNode(s) || !graph.hasNode(e)) {
@@ -142,6 +165,7 @@ export function bellmanFord(graph, s, e) {
 
 }
 
+// TODO: fix this algorithm
 export function colorAll(graph) {
     let raw = graph.getRawGraph().getUnderlyingGraph()
     let ncolor = {}
@@ -178,6 +202,10 @@ export function colorAll(graph) {
     return actions
 }
 
+// Looks for an Eulerian Circuit in a graph, and colors it if there
+// is one.
+// @param {!Graph} graph: the graph on which the eulerian circuit
+// is searched for
 export function eulerianCircuit(graph) {
 
     if (graph.directed) {
@@ -218,6 +246,10 @@ export function eulerianCircuit(graph) {
     return actions
 }
 
+// Looks for an Eulerian Path in a graph, and colors it if there
+// is one.
+// @param {!Graph} graph: the graph on which the eulerian path
+// is searched for
 export function eulerianPath(graph) {
 
     if (graph.directed) {
@@ -244,13 +276,13 @@ export function eulerianPath(graph) {
         } else if (raw.al[currentNode].length === 1) {
             next = raw.al[currentNode][0]
         } else {
-            let rawccs = Graphing.exhaustiveBFS(raw).ccs
+            let rawccs = graphing.exhaustiveBFS(raw).ccs
             for (let i = 0; i < raw.al[currentNode].length; i++) {
                 let clone = raw.clone()
                 let other = raw.al[currentNode][i]
                 clone.removeEdge(currentNode, other)
                 next = other
-                let cloneccs = Graphing.exhaustiveBFS(clone).ccs
+                let cloneccs = graphing.exhaustiveBFS(clone).ccs
                 if (cloneccs === rawccs) {
                     break
                 }
@@ -271,6 +303,8 @@ export function eulerianPath(graph) {
     return actions
 }
 
+// Clears all visualization indicators on a graph.
+// @param {!Graph} graph: the graph to be cleared of visuals
 export function clearVisualizations(graph) {
     let raw = graph.getRawGraph()
     let edges = raw.getEdges()
@@ -290,14 +324,16 @@ export function clearVisualizations(graph) {
     })
     return actions
 }
-// not the greatest implementation. Try and improve this later on.
+
+// Runs a Stoer Wagner algorithm on a graph to find the minimum cut.
+// @param {!Graph} graph: the graph upon which the minimum cut should be found
 export function stoerWagner(graph) {
     if (graph.directed) {
         throw 'cannot do Stoer Wagner on directed graph.'
     }
 
     let raw = graph.getRawGraph()
-    if (Graphing.exhaustiveBFS(raw).ccs > 1) {
+    if (graphing.exhaustiveBFS(raw).ccs > 1) {
         throw 'graph is already cut.'
     }
 
@@ -328,6 +364,8 @@ export function stoerWagner(graph) {
     return actions
 }
 
+// The Stoer Wagner helper algorithm
+// @param {!RawGraph} raw: the raw graph used by the helper
 function stoerWagnerHelp(raw) {
     let nodes = raw.getNodes()
     let a = nodes[0]

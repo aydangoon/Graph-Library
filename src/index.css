@@ -35,6 +35,8 @@
     --lithe-green: #e4f9c1;
     --lithe-dark-green: #83b925;
     --lithe-red: #ff6961;
+
+    --hide-on-mobile: '';
 }
 
 @media only screen and (max-width: 1000px), (max-height: 900px) {
@@ -47,6 +49,7 @@
         --pad: 3px;
         --mar: 3px;
         --image-scale: 50px;
+        --hide-on-mobile: none;
     }
 }
 

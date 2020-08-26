@@ -1,7 +1,15 @@
-/* eslint-disable */
-import Action from '../data-structures/Action.js'
-import MinHeap from '../data-structures/heaps/MinHeap.js'
+// @fileoverview A collection of functions that transform the state of the graph.
+// Each function changes the graph object's state in some way, and returns a list
+// of actions corresponding to what those changes were.
 
+/* eslint-disable */
+
+import Action from '../../data-structures/action.js'
+import MinHeap from '../../data-structures/heaps-and-stacks/minheap.js'
+
+// Removes all nodes and edges in the graph.
+// @param {!Graph} graph: the graph to clear
+// @returns {!Action[]} list of corresponding actions
 export function clear(graph) {
 
     let actions = [new Action('clear')]
@@ -12,6 +20,10 @@ export function clear(graph) {
     return actions
 }
 
+// Removes a node and all its incident edges from the graph.
+// @param {!Graph} graph: the graph to clear
+// @param {string} nodeLabel: the label of the node to be removed
+// @returns {!Action[]} list of corresponding actions
 export function deleteNode(graph, nodeLabel) {
     if (!graph.hasNode(nodeLabel)) {
         throw 'Node does not exist.'
@@ -25,6 +37,13 @@ export function deleteNode(graph, nodeLabel) {
     return actions
 }
 
+// Turns the graph into a tree by running a BFS from a source node and removing
+// all edges that would create cycles in the BFS tree rooted from the source node.
+// @param {!Graph} graph: the graph to clear
+// @param {string} root: the root node's label
+// @param {Object<string, string} parentOf; matches child nodes to their parent nodes
+// in the BFS tree
+// @returns {!Action[]} list of corresponding actions
 export function BFS(graph, root, parentOf = {}) {
 
     if (root === undefined) {
@@ -60,6 +79,13 @@ export function BFS(graph, root, parentOf = {}) {
     return actions
 }
 
+// Completely connects the entire graph or just a subset of nodes.
+// @param {!Graph} graph: the graph to clear
+// @param {Object} style: the graph style (necessary for when edges are created such that
+// they have styles matching the current edge styles)
+// @param {string[]} nodes: the node labels of the nodes that should be completely
+// connected
+// @returns {!Action[]} list of corresponding actions
 export function completelyConnected(graph, style, nodes) {
 
     if (nodes === null) {
@@ -87,6 +113,11 @@ export function completelyConnected(graph, style, nodes) {
     return actions
 }
 
+// Turns the graph into its transpose.
+// @param {!Graph} graph: the graph to clear
+// @param {Object} style: the graph style (necessary for when edges are created such that
+// they have styles matching the current edge styles)
+// @returns {!Action[]} list of corresponding actions
 export function transpose(graph, style) {
 
     if (!graph.directed) {
@@ -110,6 +141,11 @@ export function transpose(graph, style) {
     return actions
 }
 
+// Turns the graph into its complement.
+// @param {!Graph} graph: the graph to clear
+// @param {Object} style: the graph style (necessary for when edges are created such that
+// they have styles matching the current edge styles)
+// @returns {!Action[]} list of corresponding actions
 export function complement(graph, style) {
 
     if (graph.directed) {
@@ -136,6 +172,11 @@ export function complement(graph, style) {
     return actions
 }
 
+// Turns the graph into its corresponding strongly connected component graph.
+// @param {!Graph} graph: the graph to clear
+// @param {Object} style: the graph style (necessary for when edges are created such that
+// they have styles matching the current edge styles)
+// @returns {!Action[]} list of corresponding actions
 export function kosaraju(graph, style) {
 
     if (!graph.directed) {
@@ -178,6 +219,7 @@ export function kosaraju(graph, style) {
     return actions
 }
 
+//TODO: Why are exhaustiveDFS and DFS here??? They aren't even transformative functions
 export function exhaustiveDFS(raw, nodes = Object.keys(raw.al)) {
 
     let trees = {}
@@ -200,7 +242,6 @@ export function exhaustiveDFS(raw, nodes = Object.keys(raw.al)) {
         finished: f
     }
 }
-
 export function DFS(raw, root, colorOf, d, f, time, tree, treeName) {
 
     time = time + 1
@@ -230,6 +271,10 @@ export function DFS(raw, root, colorOf, d, f, time, tree, treeName) {
     }
 }
 
+// Turns the graph into its minimum spanning tree.
+// @param {!Graph} graph: the graph to be transformed
+// @param {string} s: the node label of the source node
+// @returns {!Action[]} list of corresponding actions
 export function minst(graph, s) {
 
     if (s === undefined) {
@@ -241,6 +286,10 @@ export function minst(graph, s) {
 
 }
 
+// Turns the graph into its maximum spanning tree.
+// @param {!Graph} graph: the graph to be transformed
+// @param {string} s: the node label of the source node
+// @returns {!Action[]} list of corresponding actions
 export function maxst(graph, s) {
 
     if (s === undefined) {
@@ -255,6 +304,12 @@ export function maxst(graph, s) {
     return prim(raw, graph, s, actions)
 }
 
+// Turns the graph into a spanning tree as defined by Prim's algorithm
+// @param {!RawGraph} raw: the raw graph data
+// @param {!Graph} graph: the graph itself that will be turned into a tree
+// @param {string} s: the node label of the source node
+// @param {!Action[]} actions: the list of actions done before prim is called
+// @returns {!Action[]} list of corresponding actions
 export function prim(raw, graph, s, actions) {
 
     if (!graph.weighted) {

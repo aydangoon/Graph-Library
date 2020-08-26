@@ -1,5 +1,9 @@
+// @fileoverview React Component for the Command List UI.
+
+/* eslint-disable */
+
 import React from 'react'
-import './css/CommandList.css'
+import './css/commandlist.css'
 
 function Command(name, desc, constraints = []) {
     return (

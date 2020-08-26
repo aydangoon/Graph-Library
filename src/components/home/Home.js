@@ -1,6 +1,9 @@
+// @fileoverview React Component for the Home tab.
+
 /* eslint-disable */
+
 import React from 'react'
-import './Home.css'
+import './home.css'
 
 export default class Home extends React.Component {
     render() {
@@ -43,14 +46,14 @@ export default class Home extends React.Component {
                         </div>
                     </div>
                     <div id = 'intuative' className = 'disp'>
-                        <img id = 'intuitive-img' src={require('../../assets/design.png')}
+                        <img className = 'hide-on-mobile' id = 'intuitive-img' src={require('../../assets/design.png')}
                             alt='(gif of simple use)'/>
                     </div>
                 </div>
                 <div className = 'feature-sect'>
                     <div id = 'efficiency' className = 'disp'>
-                        <img id='eff-img-1'  src={require('../../assets/cli.png')}alt='why' />
-                        <img id='eff-img-2' src={require('../../assets/cli_graph.png')}alt='why' />
+                        <img className = 'hide-on-mobile' id='eff-img-1'  src={require('../../assets/cli.png')}alt='why' />
+                        <img className = 'hide-on-mobile' id='eff-img-2' src={require('../../assets/cli_graph.png')}alt='why' />
                     </div>
                     <div className = 'feature-text'>
                         <div className='title'> <span className = 'lithe-blue'>Efficient</span> </div>

@@ -9,6 +9,7 @@
     width: 50%;
     margin: auto;
     margin-top: var(--gen-mar);
+    overflow: auto;
 
 }
 *[class~='video-sect'] > * {
@@ -17,4 +18,9 @@
     align-items: center;
     width: 50%;
     margin: var(--mar);
+}
+*[class~='video'] {
+    height: 200px;
+    width: 300px;
+    border: none;
 }

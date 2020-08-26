@@ -1,29 +1,50 @@
-import BoundedStack from './BoundedStack.js'
-import * as Parser from '../functions/CommandParsing.js'
+// @fileoverview Object constructor for a Command Line Object.
 
+/* eslint-disable */
+
+import BoundedStack from './heaps-and-stacks/boundedstack.js'
+import * as parser from '../functions/commandparsing.js'
+
+// A Command Line is an object that handles much of the logic
+// for a Command Line Interface. This includes command history
+// and high level command parsing management.
 export default function CommandLine() {
 
+    // @private {string[]} A list of commands as strings.
     this.list = []
-    this.history = new BoundedStack()
-    //this.reg = new RegExp('[^A-Za-z0-9]+', 'g')
 
+    // @private {!BoundedStack} A bounded stack storing the past 10 commands
+    // as strings
+    this.history = new BoundedStack()
+
+    // Adds a list of commands to the list of current commands by joining the
+    // strings together with "; " characters.
+    // @params {string[]} cmds: A string list of commands typed in a single line.
     this.addCommand = (cmds) => {
         this.list.push(cmds.join('; ') + ';')
         this.history.clear()
     }
 
+    // Removes the last command string from the list of commands and pushes it
+    // to the history list.
     this.removeLastCommand = () => {
         if (this.list.length > 0) {
             this.history.push(this.list.pop())
         }
     }
 
+    // Pops the last command string from the history stack and adds it to the
+    // list of commands.
     this.addFromHistory = () => {
         if (!this.history.empty()) {
             this.list.push(this.history.pop())
         }
     }
 
+    // Takes a command string and splits it into its parameters and does some
+    // general parsing. This is then returned as an array of strings.
+    // @param {string} cmd: the command string typed into the command line interface
+    // @returns {string[]} the parsed array of parameters
     this.parseCommand = (cmd) => {
 
         let params = cmd.split(' ').filter(param => param !== '')
@@ -45,17 +66,23 @@ export default function CommandLine() {
                 case 'stowag':
                 case 'clearvis':
                     return params
+
                 case 'del':
-                    return Parser.parseDel(params)
+                    return parser.parseDel(params)
+
                 case 'color':
-                    return Parser.parseColor(params)
+                    return parser.parseColor(params)
+
                 default:
-                    return Parser.parseAdd(params)
+                    return parser.parseAdd(params)
+
             }
         }
         return ['no command']
     }
 
+    // Gives a copy of the list of commands.
+    // @returns {string[]} list of command strings
     this.asList = () => {
         return [...this.list]
     }

@@ -35,4 +35,5 @@
 }
 .post-image > * {
     padding: var(--pad);
+    display: var(--hide-on-mobile);
 }

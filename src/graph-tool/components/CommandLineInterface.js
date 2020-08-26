@@ -1,11 +1,15 @@
+// @fileoverview React Component for the Command Line Interface. Commands typed
+// into its input are initially managed here, then vetted states of those input
+// are passed to a Command Line Object.
+
 /* eslint-disable */
+
 import React from 'react'
-import * as Transformations from '../functions/Transformations.js'
-import * as Visualizations from '../functions/Visualizations.js'
-//import { hamiltionianCycle } from '../data-structures/Hamiltonian.js'
-import Action from '../data-structures/Action.js'
-import * as Colors from '../assets/Colors.js'
-import './css/CommandLineInterface.css'
+import * as transformations from '../functions/graphs/transformations.js'
+import * as visualizations from '../functions/graphs/visualizations.js'
+import Action from '../data-structures/action.js'
+import * as colors from '../assets/colors.js'
+import './css/commandlineinterface.css'
 
 export class CLI extends React.Component {
 
@@ -28,16 +32,14 @@ export class CLI extends React.Component {
     }
 
     handleCommand(line) {
+
         const graph = this.props.graph
         const style = this.props.style
         const cl = this.props.clState
-        let cmdList
-        if (line.includes(';')) {
-            cmdList = line.split(';').filter(cmd => cmd !== '')
-        } else {
-            cmdList = [line]
-        }
         let actions = []
+
+        let cmdList = line.includes(';') ? line.split(';').filter(cmd => cmd !== '') : [line]
+
         cmdList.forEach(cmd => {
 
             let pc = cl.parseCommand(cmd)
@@ -45,7 +47,7 @@ export class CLI extends React.Component {
             try {
                 switch (pc[0]) {
                     case 'delete node':
-                        actions.push(Transformations.deleteNode(graph, pc[1]))
+                        actions.push(transformations.deleteNode(graph, pc[1]))
                     break
                     case 'add edge':
                         u = pc[1]
@@ -93,60 +95,60 @@ export class CLI extends React.Component {
                     break
                     case 'bfs':
                         let node = pc.length === 1 ? null : pc[1]
-                        actions.push(Transformations.BFS(graph, node))
+                        actions.push(transformations.BFS(graph, node))
                     break
                     case 'cc':
                         let nodes = pc.length === 1 ? null : pc.splice(1)
-                        actions.push(Transformations.completelyConnected(graph, style, nodes))
+                        actions.push(transformations.completelyConnected(graph, style, nodes))
                     break
                     case 'color node':
-                        actions.push(Visualizations.color(graph, pc[1], pc[2]))
+                        actions.push(visualizations.color(graph, pc[1], pc[2]))
                     break
                     case 'color edge':
-                        actions.push(Visualizations.color(graph, [pc[1], pc[2]], pc[3], false))
+                        actions.push(visualizations.color(graph, [pc[1], pc[2]], pc[3], false))
                     break
                     /*
                     case 'bipartite':
-                        actions.push(Visualizations.colorAll(graph))
+                        actions.push(visualizations.colorAll(graph))
                     break;
                     */
                     case 'trans':
-                        actions.push(Transformations.transpose(graph, style))
+                        actions.push(transformations.transpose(graph, style))
                     break
                     case 'clear':
-                        actions.push(Transformations.clear(graph))
+                        actions.push(transformations.clear(graph))
                     break
                     case 'clearvis':
-                        actions.push(Visualizations.clearVisualizations(graph))
+                        actions.push(visualizations.clearVisualizations(graph))
                     break
                     case 'kosaraju':
-                        actions.push(Transformations.kosaraju(graph, style))
+                        actions.push(transformations.kosaraju(graph, style))
                     break
                     case 'minst':
                         src = pc[1]
-                        actions.push(Transformations.minst(graph, src))
+                        actions.push(transformations.minst(graph, src))
                     break
                     case 'maxst':
                         src = pc[1]
-                        actions.push(Transformations.maxst(graph, src))
+                        actions.push(transformations.maxst(graph, src))
                     break
                     case 'dijkstra':
-                        actions.push(Visualizations.dijkstra(graph, pc[1], pc[2]))
+                        actions.push(visualizations.dijkstra(graph, pc[1], pc[2]))
                     break
                     case 'belford':
-                        actions.push(Visualizations.bellmanFord(graph, pc[1], pc[2]))
+                        actions.push(visualizations.bellmanFord(graph, pc[1], pc[2]))
                     break
                     case 'comp':
-                        actions.push(Transformations.complement(graph, style))
+                        actions.push(transformations.complement(graph, style))
                     break
                     case 'eulcirc':
-                        actions.push(Visualizations.eulerianCircuit(graph))
+                        actions.push(visualizations.eulerianCircuit(graph))
                     break
                     case 'eulpat':
-                        actions.push(Visualizations.eulerianPath(graph))
+                        actions.push(visualizations.eulerianPath(graph))
                     break
                     case 'stowag':
-                        actions.push(Visualizations.stoerWagner(graph))
+                        actions.push(visualizations.stoerWagner(graph))
                     break
                     default:
                         throw 'no command or bad command parse.'
@@ -162,8 +164,8 @@ export class CLI extends React.Component {
     render() {
 
         const lineArr = this.props.clState.asList()
-        const style = !this.state.error ? {backgroundColor: Colors.CELESTE, color: Colors.CELADON_BLUE}
-                                        : {backgroundColor: Colors.LIGHT_RED, color: Colors.DEEP_RED_2}
+        const style = !this.state.error ? {backgroundColor: colors.CELESTE, color: colors.CELADON_BLUE}
+                                        : {backgroundColor: colors.LIGHT_RED, color: colors.DEEP_RED_2}
 
         return (
             <div id = 'command-line-interface' className = 'section' key = 'cli'>

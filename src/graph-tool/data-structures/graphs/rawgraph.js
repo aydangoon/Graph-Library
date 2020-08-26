@@ -1,9 +1,27 @@
+// @fileoverview Object constructor for a Raw Graph. The Raw Graph only has data fundamental
+// to the implementation of a certain graph state, it is the **minimial implementation** of
+// a graph in this entire application.
+// TODO: there is inefficiency in this file and in graph. Fix them, them comment all the methods
+// appropriately.
+
+/* eslint-disable */
+
+// The least abstracted graph data implementation in this entire application.
 export default function RawGraph(directed = true, weighted = false, simple = true) {
 
+    // @private {Object.<string, string[]>} The adjacency list of the graph.
     this.al = {}
+
+    // @private {Object.<string, number>} A dictionary mapping edge keys to their weight.
     this.w = {}
+
+    // @private {boolean} If the graph is directed or not.
     this.directed = directed
+
+    // @private {boolean} If the graph is weighted or not.
     this.weighted = weighted
+
+    // @private {boolean} If the graph is simple or not.
     this.simple = simple
 
     this.addNode = (n) => {

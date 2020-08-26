@@ -1,17 +1,40 @@
-/*eslint-disable*/
-import RawGraph from './RawGraph.js'
-import Edge from './Edge.js'
-import Node from './Node.js'
+// @fileoverview Object constructor for a graph. Note, the graph contains edge visuals and
+// node visuals which have extra data such as (x, y) position that is **not** fundamental
+// to the raw data of the graph.
 
+/* eslint-disable */
+
+import RawGraph from './rawgraph.js'
+import Edge from './edge.js'
+import Node from './node.js'
+
+
+// A Graph object is an object that contains data and functions necessary
+// for the rendering and changing of state of a graph.
 export default function Graph(directed = true, weighted = false) {
 
+    // @private {boolean} If the graph is directed or not.
     this.directed = directed
+
+    // @private {boolean} If the graph is weighted or not.
     this.weighted = weighted
+
+    // @private {boolean} If the graph is simple or not.
     this.simple = true
 
+    // @private {!Edge[]} An exhaustive list of Edge objects that are absolutely
+    // necessary to render the current graph state.
     this.edges = {}
+
+    // @private {!Node[]} An exhaustive list of Node objects that are absolutely
+    // necessary to render the current graph state.
     this.nodes = {}
+
+    // @private {integer} The total number of nodes in the current graph state.
     this.nodeCount = 0
+
+    // @private {!RawGraph} The fundamental raw graph data associated directly with the
+    // current graph state.
     this.raw = new RawGraph(directed, weighted)
 
     this.changeProp = (setting, value) => {

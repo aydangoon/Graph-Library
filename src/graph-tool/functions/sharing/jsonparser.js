@@ -1,6 +1,14 @@
-/* eslint-disable */
-import Graph from '../data-structures/Graph.js'
+// @fileoverview Stores functions and helper functions related to reading in a
+// json file and converting it to a graph object.
 
+/* eslint-disable */
+
+import Graph from '../../data-structures/graphs/graph.js'
+
+// Parses a graph object that was stored in json and only returns it
+// if it is a valid graph object.
+// @param {Object} fgraph: An object that has all the data to recreate a Graph object
+// @returns {Object} fgraph if it is valid
 export default function parseJSONInput(fgraph) {
     if (!fgraph.hasOwnProperty('directed')) {
         throw 'missing [directed] property'
@@ -89,9 +97,10 @@ export default function parseJSONInput(fgraph) {
     return tgraph
 }
 
-const COLOR_REGEX = /#([0-9]|[A-F]){6}/g
-
+// Checks if a string is a color (only colors defined by #)
+// @param {string} str: the string to check
+// @returns {boolean} if the string is a color string or not
 function isColor(str){
-    let match = str.match(COLOR_REGEX)
+    let match = str.match(/#([0-9]|[A-F]){6}/g) // regex for a color of the form # then 6 hex characters
     return match !== null && match.length === 1
 }

@@ -1,6 +1,11 @@
+// @fileoverview React Component for the Graph Tool Bar as well as implementations
+// for Tool Bar Sliders and Color Pickers.
+
+/* eslint-disable */
+
 import React from 'react'
-import './css/ToolBar.css'
-import * as Colors from '../assets/Colors.js'
+import './css/toolbar.css'
+import * as colors from '../assets/colors.js'
 
 export class GraphToolBar extends React.Component {
     render() {
@@ -10,7 +15,8 @@ export class GraphToolBar extends React.Component {
             <div className = 'toolbar-sect' key = 'nodeProps'>
                 <div className = 'section-label'> Node Properties </div>
                 <div className = 'toolbar-sect-content'>
-                    <ToolBarSlider name={'radius'} settings={toolSettings} min={5} max={20} setting={'nodeRadius'} changeFunc={changeFunc} />
+                    <ToolBarSlider name={'radius'} settings={toolSettings} min={5} max={20}
+                        setting={'nodeRadius'} changeFunc={changeFunc} />
                     <ToolBarColorPicker setting={'nodeColor'}
                         changeFunc={changeFunc} settings={toolSettings} />
                 </div>
@@ -18,7 +24,8 @@ export class GraphToolBar extends React.Component {
             <div className = 'toolbar-sect' key = 'edgeProps'>
                 <div className = 'section-label'> Edge Properties </div>
                 <div className = 'toolbar-sect-content'>
-                    <ToolBarSlider name={'weight'} settings={toolSettings} min={-100} max={100} setting={'weight'} changeFunc={changeFunc} />
+                    <ToolBarSlider name={'weight'} settings={toolSettings} min={-100} max={100}
+                        setting={'weight'} changeFunc={changeFunc} />
                     <ToolBarColorPicker setting={'edgeColor'}
                         changeFunc={changeFunc} settings={toolSettings} />
                 </div>
@@ -49,7 +56,8 @@ export class ToolBarSlider extends React.Component {
         return (
             <div className = 'toolbar-slider'>
                 <span>{this.props.name}:</span>
-                <input type='number' title = {this.props.min + ' to ' + this.props.max} min={this.props.min} max={this.props.max}
+                <input type='number' title = {this.props.min + ' to ' + this.props.max}
+                    min={this.props.min} max={this.props.max}
                     defaultValue={this.props.settings[this.props.setting]}
                     onInput={this.valueChange}
                     ref={this.inputRef} />
@@ -79,11 +87,11 @@ export class ToolBarColorPicker extends React.Component {
         super(props)
         this.state = {
             colors: [
-                '#000000', //black
-                Colors.DARK_VIOLET,
-                Colors.LIGHT_BLUE,
-                Colors.LIGHT_RED,
-                Colors.LIGHT_GREEN,
+                colors.BLACK,
+                colors.DARK_VIOLET,
+                colors.LIGHT_BLUE,
+                colors.LIGHT_RED,
+                colors.LIGHT_GREEN,
             ],
             selectedInd: 0
         }

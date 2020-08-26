@@ -1,5 +1,13 @@
+// @fileoverview A collection of graph functions that operate on raw graphs and output
+// information about that graph. This can be how many connected components it has, if
+// it is a tree, etc.
+
 /* eslint-disable */
 
+// Performs a run of kosaraju's algorithm on a raw graph.
+// @param {!RawGraph} raw: the raw graph data to be used by the algorithm
+// @returns {number} sccs: the number of strongly connected components the algorithm found
+// @returns {boolean} dag: whether the graph is directed and acyclic or not
 export function kosaraju(raw) {
 
     let f = exhaustiveDFS(raw).finished
@@ -13,6 +21,15 @@ export function kosaraju(raw) {
     }
 }
 
+// Performs a DFS on all connected components in a raw graph.
+// @param {!RawGraph} raw: the raw graph data to be used by the algorithm
+// @param {string[]} nodes: the nodes in the graph, or component, to be used
+// @returns {number} trees: the number of connected components found
+// @returns {boolean} dag: whether the graph is directed and acyclic or not
+// @ returns {Object<string, number>} finished: a dictionary connecting nodes to their
+// finish time in the algorithm
+// @ returns {Object<string, number>} discovered: a dictionary connecting nodes to their
+// discovery time in the algorithm
 export function exhaustiveDFS(raw, nodes = raw.getNodes()) {
 
     let dag = true
@@ -24,7 +41,7 @@ export function exhaustiveDFS(raw, nodes = raw.getNodes()) {
 
     let time = 0
 
-    nodes.forEach(node => {colorOf[node] = 0}) // 0: white, 1: grey, 2: black
+    nodes.forEach(node => {colorOf[node] = 0})
     nodes.forEach(node => {
         if (colorOf[node] === 0) {
             let outputDFS = DFS(raw, node, colorOf, d, f, time)
@@ -42,6 +59,18 @@ export function exhaustiveDFS(raw, nodes = raw.getNodes()) {
     }
 }
 
+// Performs a DFS from a starting node.
+// @param {!RawGraph} raw: the raw graph data to be used by the algorithm
+// @param {string} root: the node to start the search on
+// @param {Object<string, number>} colorOf: a dictionary connecting nodes to
+// their appropriate color in the algorithm. 0: white, 1: grey, 2: black.
+// @param {Object<string, number>} d: a dictionary connecting nodes to their
+// discovery time in the algorithm
+// @param {Object<string, number>} f: a dictionary connecting nodes to their
+// finish time in the algorithm
+// @param {number} time: the current time value in the algorithm run
+// @returns {number} time: the finishing time of the algorithm
+// @returns {boolean} cycle: indicates if a cycle was found
 export function DFS(raw, root, colorOf, d, f, time) {
 
     let cycle = false
@@ -69,6 +98,13 @@ export function DFS(raw, root, colorOf, d, f, time) {
     }
 }
 
+// Performs a BFS from a starting node.
+// @param {!RawGraph} raw: the raw graph data to be used by the algorithm
+// @param {string} root: the root node to start the BFS from
+// @param {Object<string, string>} A dictionary matching child nodes to their parent nodes
+// @returns {boolean} cycle: indicates if a cycle was found
+// @returns {boolean} bipartite: if the graph is bipartite or not
+// @returns {number} nodeCount: the number of nodes counted by the algorithm
 function BFS(raw, root, parentOf = {}) {
 
     let cycle = false
@@ -108,6 +144,19 @@ function BFS(raw, root, parentOf = {}) {
     }
 }
 
+// Performs a BFS on every connected component in a graph.
+// @param {!RawGraph} raw: the raw graph data to be used by the algorithm
+// @returns {integer} ccs: number of connected components
+// @returns {integer} nonSingletons: number of connected components with more than
+// one node
+// @returns {string} acyclic: string representation of boolean for whether the
+// graph is acyclic
+// @returns {string} tree: string representation of boolean for whether the graph
+// is a tree
+// @returns {string} forest: string representation of boolean for whether the
+// graph is a forest
+// @returns {string} bipartite: string representation of boolean for whether the
+// cc is bipartite
 export function exhaustiveBFS(raw) {
 
     let ccs = 0
@@ -140,6 +189,16 @@ export function exhaustiveBFS(raw) {
     }
 }
 
+// Determines whether the graph is eulerian and/or hamiltonian.
+// @param {number} ccs: Number of connected components in graph
+// @param {number} nonSingletons: number of non-singleton connected components in graph
+// @param {!RawGraph} raw: the raw graph data to be used by the algorithm
+// @returns {string} eulerian: string representation of boolean for whether the
+// graph is eulerian or not
+// @returns {number} minDegree: the minimum degree in the graph
+// @returns {number} maxDegree: the maximum degree in the graph
+// @returns {string} hamStr: the string output for whether the graph is hamiltonian
+// or not. This can be "True", "False", or "Possible".
 export function eulerianAndHamiltonian(ccs, nonSingletons, raw) {
 
     let nodes = raw.getNodes()
@@ -175,13 +234,15 @@ export function eulerianAndHamiltonian(ccs, nonSingletons, raw) {
     switch (hamiltonian) {
         case 0:
             hamStr = 'false'
-        break
+            break
+
         case 1:
             hamStr = 'possible'
-        break
+            break
+
         default:
             hamStr = 'true'
-        break
+            break
     }
 
     return {

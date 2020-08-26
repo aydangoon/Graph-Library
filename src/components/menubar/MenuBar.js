@@ -1,7 +1,11 @@
+// @fileoverview React Component for top navigation bar. Uses react router
+// links to travel to different pages.
+
 /* eslint-disable */
+
 import React from 'react'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
-import './Menu.css'
+import './menu.css'
 
 export default class Home extends React.Component {
     render() {

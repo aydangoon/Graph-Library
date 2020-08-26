@@ -1,10 +1,15 @@
+// @fileoverview React Component for the Graph Render. All mouse actions are read and handled
+// here. They are handled either by calling parent level functions passed through props
+// or by passing inputs to various other imported functions.
+
 /* eslint-disable */
+
 import React from 'react'
-import Action from '../data-structures/Action.js'
-import * as Gmy from '../functions/Geometry.js'
-import * as Transformations from '../functions/Transformations.js'
-import * as Renderer from '../functions/Rendering.js'
-import * as Colors from '../assets/Colors.js'
+import Action from '../data-structures/action.js'
+import * as gmy from '../functions/geometry.js'
+import * as transformations from '../functions/graphs/transformations.js'
+import * as renderer from '../functions/rendering.js'
+import * as colors from '../assets/colors.js'
 
 export class GraphRender extends React.Component {
 
@@ -32,7 +37,7 @@ export class GraphRender extends React.Component {
         let node
         for (let i = 0; i < nodes.length; i++) {
             node = nodes[i]
-            if (Gmy.dist({x, y}, Gmy.toScale(node, dims)) <= node.radius) {
+            if (gmy.dist({x, y}, gmy.toScale(node, dims)) <= node.radius) {
                 return node
             }
         }
@@ -42,7 +47,7 @@ export class GraphRender extends React.Component {
     edgeClicked(x, y, dims) {
         const edges = this.props.graph.getEdgeVisuals()
         for (let i = 0; i < edges.length; i++) {
-            if (Gmy.edgeClicked(x, y, edges[i], dims)) {
+            if (gmy.edgeClicked(x, y, edges[i], dims)) {
                 return edges[i]
             }
         }
@@ -62,7 +67,7 @@ export class GraphRender extends React.Component {
 
         const dims = this.getCanvasDimensions()
         const {x, y} = this.getMouseInput(e)
-        const mm = Gmy.toMinmap({x, y}, dims)
+        const mm = gmy.toMinmap({x, y}, dims)
         const graph = this.props.graph
         const style = this.props.style
         const clickedNode = this.nodeClicked(x, y, dims)
@@ -132,7 +137,7 @@ export class GraphRender extends React.Component {
                 let cmds = []
                 if (this.state.selectedNode != null) {
                     e.preventDefault()
-                    actions.push(Transformations.deleteNode(this.props.graph, this.state.selectedNode.label))
+                    actions.push(transformations.deleteNode(this.props.graph, this.state.selectedNode.label))
                     cmds.push('del ' + this.state.selectedNode.label)
                     this.setState({selectedNode: null})
                 }
@@ -147,13 +152,14 @@ export class GraphRender extends React.Component {
                     this.setState({selectedEdges: []})
                 }
                 this.props.handleActions(actions, cmds)
-            break
+                break
+
             case 27:
                 this.setState({
                     selectedNode: null,
                     selectedEdges: []
                 })
-            break
+                break
         }
     }
 
@@ -209,7 +215,7 @@ export class GraphRender extends React.Component {
         const nodes = graph.getNodeVisuals()
         const edges = graph.getEdgeVisuals()
 
-        Renderer.clearAndPrepare(ctx)
+        renderer.clearAndPrepare(ctx)
 
         const selectedNode = this.state.selectedNode
         if (selectedNode !== null && !graph.hasNode(selectedNode)) {
@@ -218,16 +224,18 @@ export class GraphRender extends React.Component {
 
         const selectedEdges = this.state.selectedEdges
         edges.forEach(edge => {
-            Renderer.drawEdge(ctx, canvas, edge, edge.color, graph.directed, edge.bent, graph.weighted, selectedEdges.indexOf(edge) !== -1)
+            renderer.drawEdge(ctx, canvas, edge, edge.color, graph.directed, edge.bent,
+                graph.weighted, selectedEdges.indexOf(edge) !== -1)
         })
 
         nodes.forEach(node => {
             if (node === selectedNode) {
-                Renderer.fillCircle(ctx, canvas, node.x, node.y,
-                    1.2 * node.radius, Colors.HIGHLIGHT, false)
+                renderer.fillCircle(ctx, canvas, node.x, node.y,
+                    1.2 * node.radius, colors.HIGHLIGHT, false)
             }
-            Renderer.fillCircle(ctx, canvas, node.x, node.y, node.radius, node.color, true)
-            Renderer.fillText(ctx, canvas, node.label, node.x, node.y, 'white', node.radius < 10 ? 10 : 12)
+            renderer.fillCircle(ctx, canvas, node.x, node.y, node.radius, node.color, true)
+            renderer.fillText(ctx, canvas, node.label, node.x, node.y,
+                'white', node.radius < 10 ? 10 : 12)
         })
     }
 }

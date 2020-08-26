@@ -1,5 +1,9 @@
+// @fileoverview React Component for the Share Section.
+
+/* eslint-disable */
+
 import React from 'react'
-import './css/ToolBar.css'
+import './css/toolbar.css'
 
 export class ShareSect extends React.Component {
     constructor(props) {

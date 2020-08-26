@@ -1,5 +1,9 @@
+// @fileoverview React Component for the Tutorial tab.
+
+/* eslint-disable */
+
 import React from 'react'
-import './Tutorial.css'
+import './tutorial.css'
 
 export default class Tutorial extends React.Component {
     render() {
@@ -7,14 +11,14 @@ export default class Tutorial extends React.Component {
             <div id = 'tutorial'>
                 <div className = 'section video-sect'>
                     <div className = 'subtitle'> Adding, Moving and Deleting Edges and Nodes </div>
-                    <iframe width="420" height="315"
-                    src="https://www.youtube.com/embed/FatNwfX_AOs" allowFullScreen={true}>
+                    <iframe className = 'video'
+                    src="https://www.youtube.com/embed/FatNwfX_AOs" allowFullScreen={true} title='tutorial 1'>
                     </iframe>
                 </div>
                 <div className = 'section video-sect'>
                     <div className = 'subtitle'> Using the Command Line Interface </div>
-                    <iframe width="420" height="315"
-                    src="https://www.youtube.com/embed/v5xRNk93S0o" allowFullScreen={true}>
+                    <iframe className = 'video'
+                    src="https://www.youtube.com/embed/v5xRNk93S0o" allowFullScreen={true} title='tutorial 2'>
                     </iframe>
                 </div>
             </div>

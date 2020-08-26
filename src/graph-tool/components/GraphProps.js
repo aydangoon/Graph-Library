@@ -1,7 +1,12 @@
+// @fileoverview React Component for the Graph Properties List. Note, the graph properties
+// are also calculated in this file by calls to functions imported from graphing.js
+
+/* eslint-disable */
+
 import React from 'react'
-import './css/PropList.css'
-import { exhaustiveBFS, kosaraju, eulerianAndHamiltonian } from '../functions/Graphing.js'
-import * as Colors from '../assets/Colors.js'
+import './css/proplist.css'
+import { exhaustiveBFS, kosaraju, eulerianAndHamiltonian } from '../functions/graphs/graphing.js'
+import * as colors from '../assets/colors.js'
 
 export class GraphPropsList extends React.Component {
 
@@ -70,16 +75,16 @@ function GraphProp(string, item) {
     }
     switch(color) {
         case 0:
-            style.backgroundColor = Colors.CELESTE
-            style.color = Colors.CELADON_BLUE
+            style.backgroundColor = colors.CELESTE
+            style.color = colors.CELADON_BLUE
             break
         case 1:
-            style.backgroundColor = Colors.LIGHT_RED
-            style.color = Colors.DEEP_RED_2
+            style.backgroundColor = colors.LIGHT_RED
+            style.color = colors.DEEP_RED_2
             break
         case 2:
-            style.backgroundColor = Colors.LIGHT_VIOLET
-            style.color = Colors.PURPLE
+            style.backgroundColor = colors.LIGHT_VIOLET
+            style.color = colors.PURPLE
             break
         default:
             break

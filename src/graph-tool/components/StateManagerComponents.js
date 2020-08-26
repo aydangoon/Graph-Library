@@ -1,6 +1,10 @@
+// @fileoverview React Component for the State Manager. 
+
+/* eslint-disable */
+
 import React from 'react'
-import { clearVisualizations } from '../functions/Visualizations.js'
-import './css/ToolBar.css'
+import { clearVisualizations } from '../functions/graphs/visualizations.js'
+import './css/toolbar.css'
 
 export class StateManager extends React.Component {
 

@@ -1,19 +1,25 @@
-/* eslint-disable */
-import React from 'react'
-import { GraphToolBar } from './components/ToolBarComponents'
-import { GraphRender } from './components/RenderingComponents'
-import { GraphPropsList } from './components/GraphProps'
-import { StateManager } from './components/StateManagerComponents'
-import { CLI } from './components/CommandLineInterface'
-import { CommandList } from './components/CommandList.js'
-import { ShareSect } from './components/ShareComponent.js'
-import Graph from './data-structures/Graph.js'
-import BoundedStack from './data-structures/BoundedStack.js'
-import CommandLine from './data-structures/CommandLine.js'
-import * as Downloads from './functions/Downloads.js'
-import './GraphTool.css'
+// @fileoverview React Component for the parent Graph Tool. This contains all UI
+// children. These children are GraphToolBar, GraphRender, GraphPropsList, CLI,
+// CommandList, and ShareSect. Top level state is stored in this react component,
+// and this included the actual graph itself.
 
-import parseJSONInput from './functions/JSONParser.js'
+/* eslint-disable */
+
+import React from 'react'
+import { GraphToolBar } from './toolbarcomponents.js'
+import { GraphRender } from './renderingcomponents.js'
+import { GraphPropsList } from './graphprops.js'
+import { StateManager } from './statemanagercomponents.js'
+import { CLI } from './commandlineinterface.js'
+import { CommandList } from './commandlist.js'
+import { ShareSect } from './sharecomponents.js'
+import Graph from '../data-structures/graphs/graph.js'
+import BoundedStack from '../data-structures/heaps-and-stacks/boundedstack.js'
+import CommandLine from '../data-structures/commandline.js'
+import * as downloads from '../functions/sharing/downloads.js'
+import * as colors from '../assets/colors.js'
+import './css/graphtool.css'
+import parseJSONInput from '../functions/sharing/jsonparser.js'
 
 export default class GraphTool extends React.Component {
     constructor(props) {
@@ -25,11 +31,11 @@ export default class GraphTool extends React.Component {
 
                 // nodes
                 nodeRadius: 10,
-                nodeColor: '#000000',
+                nodeColor: colors.BLACK,
 
                 // edges
                 weight: 1,
-                edgeColor: '#000000'
+                edgeColor: colors.BLACK
 
             },
 
@@ -55,11 +61,11 @@ export default class GraphTool extends React.Component {
     }
 
     downloadPng() {
-        Downloads.downloadPng(this.renderingRef.current.getPngURI())
+        downloads.downloadPng(this.renderingRef.current.getPngURI())
     }
 
     downloadJSON() {
-        Downloads.downloadJSON(JSON.stringify(this.state.graph))
+        downloads.downloadJSON(JSON.stringify(this.state.graph))
     }
 
     readInJSON() {
@@ -127,39 +133,46 @@ export default class GraphTool extends React.Component {
             if (Array.isArray(elt)) {
                 this.redoActions(elt)
             } else {
-                const name = elt.privateString
+                const name = elt.name
                 const item = elt.item
                 const graph = this.state.graph
                 let curr, node, edge
                 switch (name) {
                     case 'add node':
                         graph.addNode(item)
-                    break
+                        break
+
                     case 'delete node':
                         graph.removeNode(item)
-                    break
+                        break
+
                     case 'add edge':
                         graph.addEdge(item)
-                    break
+                        break
+
                     case 'delete edge':
                         graph.removeEdge(item)
-                    break
+                        break
+
                     case 'color node':
                         curr = item.curr
                         node = item.node
                         node.color = curr
-                    break
+                        break
+
                     case 'color edge':
                         curr = item.curr
                         edge = item.edge
                         edge.color = curr
-                    break
+                        break
+
                     case 'eulerian mark':
                         item.edge.eulerianMarker = item.mark
-                    break
+                        break
+
                     case 'set weight':
                         graph.setWeight(item.u, item.v, item.nw)
-                    break
+                        break
                 }
             }
         })
@@ -179,39 +192,46 @@ export default class GraphTool extends React.Component {
             if (Array.isArray(elt)) {
                 this.undoActions(elt)
             } else {
-                const name = elt.privateString
+                const name = elt.name
                 const item = elt.item
                 const graph = this.state.graph
                 let prev, edge, node
                 switch (name) {
                     case 'add node':
                         graph.removeNode(item)
-                    break
+                        break
+
                     case 'delete node':
                         graph.addNode(item)
-                    break
+                        break
+
                     case 'add edge':
                         graph.removeEdge(item)
-                    break
+                        break
+
                     case 'delete edge':
                         graph.addEdge(item)
-                    break
+                        break
+
                     case 'color node':
                         prev = item.prev
                         node = item.node
                         node.color = prev
-                    break
+                        break
+
                     case 'color edge':
                         prev = item.prev
                         edge = item.edge
                         edge.color = prev
-                    break
+                        break
+
                     case 'eulerian mark':
                         item.edge.eulerianMarker = item.prev
-                    break
+                        break
+
                     case 'set weight':
                         graph.setWeight(item.u, item.v, item.pw)
-                    break
+                        break
                 }
             }
         }
