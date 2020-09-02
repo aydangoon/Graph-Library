@@ -26,17 +26,17 @@ export default class Home extends React.Component {
                 {title: 'Documentation', img: this.toImg('docs.png')}
             ]
         return (
-            <div>
-                <div id = 'greeting'>
-                    <img src={require('../../assets/logo.png')} alt='logo' id='logo'></img>
+            <div className = 'container-xl p-4'>
+                <div id = 'greeting' className = 'm-5 p-2'>
+                    <img className = 'img-fluid' src={require('../../assets/logo.png')} alt='logo' />
                     <div className = 'title'> Welcome to the Lithe <span className='lithe-blue'>Graphing</span> <span className='lithe-green'>Library</span></div>
                     <div>
                         <div className = 'subtitle'> A simple and practical graphing tool </div>
-                        <a href='https://github.com/aydangoon/Graph-Library'> and now open source </a>
+                        <a href='https://github.com/aydangoon/Graph-Library'> (and now open source) </a>
                     </div>
                 </div>
-                <div className = 'feature-sect'>
-                    <div className = 'feature-text'>
+                <div className = 'row align-items-center m-5 slow-fade'>
+                    <div className = 'col-4 d-flex flex-column'>
                         <div className='title'><span className = 'lithe-red'>Intuitive</span></div>
                         <div className='feature-paragraph'>
                             LitheGL is designed with users in mind. Only the necessary components needed to interface
@@ -45,17 +45,17 @@ export default class Home extends React.Component {
                             alongside a suite of other tools to streamline the process of building and analyizing graphs.
                         </div>
                     </div>
-                    <div id = 'intuative' className = 'disp'>
-                        <img className = 'hide-on-mobile' id = 'intuitive-img' src={require('../../assets/design.png')}
+                    <div className = 'col-8'>
+                        <img className = 'img-fluid rounded' id = 'intuative' src={require('../../assets/design.png')}
                             alt='(gif of simple use)'/>
                     </div>
                 </div>
-                <div className = 'feature-sect'>
-                    <div id = 'efficiency' className = 'disp'>
-                        <img className = 'hide-on-mobile' id='eff-img-1'  src={require('../../assets/cli.png')}alt='why' />
-                        <img className = 'hide-on-mobile' id='eff-img-2' src={require('../../assets/cli_graph.png')}alt='why' />
+                <div className = 'row align-items-center m-5 slow-fade'>
+                    <div className = 'col-8 rounded' id = 'efficiency'>
+                        <img className = 'img-fluid' id='eff-img-1'  src={require('../../assets/cli.png')} alt='why' />
+                        <img className = 'img-fluid' id='eff-img-2' src={require('../../assets/cli_graph.png')} alt='why' />
                     </div>
-                    <div className = 'feature-text'>
+                    <div className = 'col-4'>
                         <div className='title'> <span className = 'lithe-blue'>Efficient</span> </div>
                         <div className='feature-paragraph'>
                             LitheGL features a command line interface with a set of straight forward commands
@@ -65,8 +65,8 @@ export default class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className = 'feature-sect'>
-                    <div className = 'feature-text'>
+                <div className = 'row align-items-center m-5 slow-fade'>
+                    <div className = 'col-4'>
                         <div className='title'> <span className = 'lithe-green'>Functional </span> </div>
                         <div className='feature-paragraph'>
                             LitheGL features an ever growing list of useful algorithms and features.
@@ -75,7 +75,7 @@ export default class Home extends React.Component {
                             more are to come!
                         </div>
                     </div>
-                    <div className='disp' id = 'functions-list-wrapper'>
+                    <div className='col-8' id = 'functions-list-wrapper'>
                         <div id = 'functions-list'>
                             {funcs.map((item, index) => {
                                 return <div key={index}>{item}</div>
@@ -83,7 +83,7 @@ export default class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div id = 'features'>
+                <div className = 'container-fluid d-flex flex-column m-5 slow-fade'>
                     <div>
                         <div className = 'subtitle'>Current Features</div>
                         <div id = 'current-features' className = 'features-list'>

@@ -5,17 +5,8 @@
 
 .post-content {
     animation: fade-in 2s;
-    padding: var(--pad);
     border-radius: var(--border-rad);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
     background-color: var(--lightest-grey);
-    width: 50%;
-    margin: auto;
-    margin-bottom: var(--gen-mar);
-    margin-top: var(--gen-mar);
 }
 .post-content > * {
     padding: var(--pad);
@@ -24,8 +15,6 @@
 }
 
 .post-image {
-    border: 2px solid var(--light-grey);
-    border-radius: var(--border-rad);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,5 +24,4 @@
 }
 .post-image > * {
     padding: var(--pad);
-    display: var(--hide-on-mobile);
 }

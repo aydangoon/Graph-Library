@@ -1,12 +1,12 @@
-## Lithe Graphing Library build 1.0.1
+## Lithe Graphing Library build 1.0.2
 
 ##### New
 
-- Initial JSDocs on all files.
+- Bootstrap added to Home, Dev Blog and Tutorial pages.
 
 ##### Fixes
 
-- Nonnumeric edge weights.
+- Footer content now hides properly on smaller screen displays.
 
 ##### In Development
 

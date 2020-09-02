@@ -11,7 +11,7 @@ export default class DevBlog extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = 'container-md'>
                 <div id ='main-title' className='title'> Developer Blog </div>
                 {
                     blogs.map((post, index) => this.renderPost(post, index))
@@ -23,7 +23,7 @@ export default class DevBlog extends React.Component {
         let title = post.title
         let content = post.content
         return (
-            <div key={index} className = 'post-content'>
+            <div key={index} className = 'post-content m-2 p-2 d-flex flex-column'>
                 <div className = 'subtitle'> {title} </div>
                 {
                     content.map((item, i) => {
@@ -47,6 +47,6 @@ export default class DevBlog extends React.Component {
     }
 
     toImg(icon, width) {
-        return <img width={width} src={require('../../assets/' + icon)} />
+        return <img className = 'img-fluid img-thumbnail' src={require('../../assets/' + icon)} />
     }
 }

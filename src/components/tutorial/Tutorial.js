@@ -8,18 +8,20 @@ import './tutorial.css'
 export default class Tutorial extends React.Component {
     render() {
         return (
-            <div id = 'tutorial'>
-                <div className = 'section video-sect'>
+            <div className = 'container-sm p-2' id = 'tutorial'>
+                <div className = 'section d-flex flex-column align-items-center m-2'>
                     <div className = 'subtitle'> Adding, Moving and Deleting Edges and Nodes </div>
-                    <iframe className = 'video'
-                    src="https://www.youtube.com/embed/FatNwfX_AOs" allowFullScreen={true} title='tutorial 1'>
-                    </iframe>
+                    <div>
+                        <iframe className = 'video'
+                        src="https://www.youtube.com/embed/FatNwfX_AOs" allowFullScreen={true} title='tutorial 1' />
+                    </div>
                 </div>
-                <div className = 'section video-sect'>
+                <div className = 'd-flex flex-column align-items-center m-2 section'>
                     <div className = 'subtitle'> Using the Command Line Interface </div>
-                    <iframe className = 'video'
-                    src="https://www.youtube.com/embed/v5xRNk93S0o" allowFullScreen={true} title='tutorial 2'>
-                    </iframe>
+                    <div>
+                        <iframe className = 'video'
+                        src="https://www.youtube.com/embed/v5xRNk93S0o" allowFullScreen={true} title='tutorial 2' />
+                    </div>
                 </div>
             </div>
 
