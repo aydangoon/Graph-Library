@@ -3,8 +3,8 @@
 
 /* eslint-disable */
 
-import * as colors from '../assets/colors.js'
-import * as gmy from './geometry.js'
+import * as colors from '../assets/Colors.js'
+import * as gmy from './Geometry.js'
 
 // fills a circle at a certain position with a radius, color, and possibly with
 // a border.

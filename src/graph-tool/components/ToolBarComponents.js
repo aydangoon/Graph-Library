@@ -4,8 +4,8 @@
 /* eslint-disable */
 
 import React from 'react'
-import './css/toolbar.css'
-import * as colors from '../assets/colors.js'
+import './css/ToolBar.css'
+import * as colors from '../assets/Colors.js'
 
 export class GraphToolBar extends React.Component {
     render() {

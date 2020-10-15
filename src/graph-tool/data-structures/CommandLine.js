@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import BoundedStack from './heaps-and-stacks/boundedstack.js'
-import * as parser from '../functions/commandparsing.js'
+import * as parser from '../functions/CommandParsing.js'
 
 // A Command Line is an object that handles much of the logic
 // for a Command Line Interface. This includes command history

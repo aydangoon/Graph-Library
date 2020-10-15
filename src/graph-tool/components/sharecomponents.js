@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import React from 'react'
-import './css/toolbar.css'
+import './css/ToolBar.css'
 
 export class ShareSect extends React.Component {
     constructor(props) {

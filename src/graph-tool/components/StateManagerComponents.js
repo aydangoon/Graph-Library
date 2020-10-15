@@ -1,10 +1,10 @@
-// @fileoverview React Component for the State Manager. 
+// @fileoverview React Component for the State Manager.
 
 /* eslint-disable */
 
 import React from 'react'
 import { clearVisualizations } from '../functions/graphs/visualizations.js'
-import './css/toolbar.css'
+import './css/ToolBar.css'
 
 export class StateManager extends React.Component {
 
@@ -38,13 +38,6 @@ export class StateManager extends React.Component {
                         <input type='checkbox' onClick={(cb) => {changeFunc('weighted', cb.target.checked)}} />
                         <span>weighted</span>
                     </div>
-                    {/*<div>
-                        <input type='checkbox'
-                            onClick={(cb) => {changeFunc('simple', cb.target.checked)}}
-                            defaultChecked={true}
-                            disabled={true}/>
-                        <span>simple</span>
-                    </div>*/}
                 </div>
             </div>
         )

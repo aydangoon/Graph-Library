@@ -5,7 +5,7 @@
 
 import React from 'react'
 import blogs from './blogs.json'
-import './devblog.css'
+import './DevBlog.css'
 
 export default class DevBlog extends React.Component {
 

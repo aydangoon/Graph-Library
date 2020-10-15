@@ -6,20 +6,21 @@
 /* eslint-disable */
 
 import React from 'react'
-import { GraphToolBar } from './toolbarcomponents.js'
-import { GraphRender } from './renderingcomponents.js'
-import { GraphPropsList } from './graphprops.js'
-import { StateManager } from './statemanagercomponents.js'
-import { CLI } from './commandlineinterface.js'
-import { CommandList } from './commandlist.js'
+import { GraphToolBar } from './ToolBarComponents.js'
+import { GraphRender } from './RenderingComponents.js'
+import { GraphPropsList } from './GraphProps.js'
+import { StateManager } from './StateManagerComponents.js'
+import { CLI } from './CommandLineInterface.js'
+import { CommandList } from './CommandList.js'
 import { ShareSect } from './sharecomponents.js'
 import Graph from '../data-structures/graphs/graph.js'
 import BoundedStack from '../data-structures/heaps-and-stacks/boundedstack.js'
-import CommandLine from '../data-structures/commandline.js'
+import CommandLine from '../data-structures/CommandLine.js'
 import * as downloads from '../functions/sharing/downloads.js'
-import * as colors from '../assets/colors.js'
+import * as colors from '../assets/Colors.js'
 import './css/graphtool.css'
 import parseJSONInput from '../functions/sharing/jsonparser.js'
+import { redoToGraph, undoToGraph } from '../functions/graphs/StateManagement.js'
 
 export default class GraphTool extends React.Component {
     constructor(props) {
@@ -47,17 +48,17 @@ export default class GraphTool extends React.Component {
             graph: new Graph()
 
         }
-        this.changeToolSetting = this.changeToolSetting.bind(this)
-        this.changeGraphSetting = this.changeGraphSetting.bind(this)
-        this.handleActions = this.handleActions.bind(this)
-        this.downloadPng = this.downloadPng.bind(this)
-        this.downloadJSON = this.downloadJSON.bind(this)
-        this.readInJSON = this.readInJSON.bind(this)
-        this.clear = this.clear.bind(this)
-        this.undo = this.undo.bind(this)
-        this.redo = this.redo.bind(this)
-        this.renderingRef = React.createRef()
-        this.shareSectRef = React.createRef()
+        this.changeToolSetting      = this.changeToolSetting.bind(this)
+        this.changeGraphSetting     = this.changeGraphSetting.bind(this)
+        this.handleActions          = this.handleActions.bind(this)
+        this.downloadPng            = this.downloadPng.bind(this)
+        this.downloadJSON           = this.downloadJSON.bind(this)
+        this.readInJSON             = this.readInJSON.bind(this)
+        this.clear                  = this.clear.bind(this)
+        this.undo                   = this.undo.bind(this)
+        this.redo                   = this.redo.bind(this)
+        this.renderingRef           = React.createRef()
+        this.shareSectRef           = React.createRef()
     }
 
     downloadPng() {
@@ -75,9 +76,7 @@ export default class GraphTool extends React.Component {
         }
         let reader = new FileReader()
         reader.readAsText(file)
-        reader.onload = () => {
-            this.makeGraph(JSON.parse(reader.result))
-        }
+        reader.onload = () => { this.makeGraph(JSON.parse(reader.result))}
     }
 
     makeGraph(fgraph) {
@@ -89,9 +88,7 @@ export default class GraphTool extends React.Component {
                 redoStack: new BoundedStack(),
                 commandLine: new CommandLine()
             })
-        } catch (err) {
-            alert('JSON Parsing Error: ' + err)
-        }
+        } catch (err) { alert('JSON Parsing Error: ' + err) }
     }
 
     changeToolSetting(setting, value) {
@@ -129,51 +126,11 @@ export default class GraphTool extends React.Component {
     }
 
     redoActions(actions) {
-        actions.forEach(elt => {
-            if (Array.isArray(elt)) {
-                this.redoActions(elt)
+        actions.forEach(action => {
+            if (Array.isArray(action)) {
+                this.redoActions(action)
             } else {
-                const name = elt.name
-                const item = elt.item
-                const graph = this.state.graph
-                let curr, node, edge
-                switch (name) {
-                    case 'add node':
-                        graph.addNode(item)
-                        break
-
-                    case 'delete node':
-                        graph.removeNode(item)
-                        break
-
-                    case 'add edge':
-                        graph.addEdge(item)
-                        break
-
-                    case 'delete edge':
-                        graph.removeEdge(item)
-                        break
-
-                    case 'color node':
-                        curr = item.curr
-                        node = item.node
-                        node.color = curr
-                        break
-
-                    case 'color edge':
-                        curr = item.curr
-                        edge = item.edge
-                        edge.color = curr
-                        break
-
-                    case 'eulerian mark':
-                        item.edge.eulerianMarker = item.mark
-                        break
-
-                    case 'set weight':
-                        graph.setWeight(item.u, item.v, item.nw)
-                        break
-                }
+                redoToGraph(action, this.state.graph)
             }
         })
     }
@@ -188,51 +145,11 @@ export default class GraphTool extends React.Component {
 
     undoActions(actions) {
         for (let i = actions.length - 1; i >= 0; i--) {
-            let elt = actions[i]
-            if (Array.isArray(elt)) {
-                this.undoActions(elt)
+            let action = actions[i]
+            if (Array.isArray(action)) {
+                this.undoActions(action)
             } else {
-                const name = elt.name
-                const item = elt.item
-                const graph = this.state.graph
-                let prev, edge, node
-                switch (name) {
-                    case 'add node':
-                        graph.removeNode(item)
-                        break
-
-                    case 'delete node':
-                        graph.addNode(item)
-                        break
-
-                    case 'add edge':
-                        graph.removeEdge(item)
-                        break
-
-                    case 'delete edge':
-                        graph.addEdge(item)
-                        break
-
-                    case 'color node':
-                        prev = item.prev
-                        node = item.node
-                        node.color = prev
-                        break
-
-                    case 'color edge':
-                        prev = item.prev
-                        edge = item.edge
-                        edge.color = prev
-                        break
-
-                    case 'eulerian mark':
-                        item.edge.eulerianMarker = item.prev
-                        break
-
-                    case 'set weight':
-                        graph.setWeight(item.u, item.v, item.pw)
-                        break
-                }
+                undoToGraph(action, this.state.graph)
             }
         }
     }

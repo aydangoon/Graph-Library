@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import React from 'react'
-import './css/commandlist.css'
+import './css/CommandList.css'
 
 function Command(name, desc, constraints = []) {
     return (

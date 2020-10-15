@@ -4,9 +4,9 @@
 /* eslint-disable */
 
 import React from 'react'
-import './css/proplist.css'
+import './css/PropList.css'
 import { exhaustiveBFS, kosaraju, eulerianAndHamiltonian } from '../functions/graphs/graphing.js'
-import * as colors from '../assets/colors.js'
+import * as colors from '../assets/Colors.js'
 
 export class GraphPropsList extends React.Component {
 

@@ -4,7 +4,7 @@
 
 /* eslint-disable */
 
-import Action from '../../data-structures/action.js'
+import Action from '../../data-structures/Action.js'
 import MinHeap from '../../data-structures/heaps-and-stacks/minheap.js'
 
 // Removes all nodes and edges in the graph.

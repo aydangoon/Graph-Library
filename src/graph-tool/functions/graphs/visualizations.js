@@ -4,9 +4,9 @@
 
 /* eslint-disable */
 
-import Action from '../../data-structures/action.js'
+import Action from '../../data-structures/Action.js'
 import MinHeap from '../../data-structures/heaps-and-stacks/minheap.js'
-import * as colors from '../../assets/colors.js'
+import * as colors from '../../assets/Colors.js'
 import * as graphing from './graphing.js'
 
 // Colors a node or edge a certain color.

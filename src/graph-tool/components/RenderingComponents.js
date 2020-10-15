@@ -5,11 +5,11 @@
 /* eslint-disable */
 
 import React from 'react'
-import Action from '../data-structures/action.js'
-import * as gmy from '../functions/geometry.js'
+import Action from '../data-structures/Action.js'
+import * as gmy from '../functions/Geometry.js'
 import * as transformations from '../functions/graphs/transformations.js'
-import * as renderer from '../functions/rendering.js'
-import * as colors from '../assets/colors.js'
+import * as renderer from '../functions/Rendering.js'
+import * as colors from '../assets/Colors.js'
 
 export class GraphRender extends React.Component {
 

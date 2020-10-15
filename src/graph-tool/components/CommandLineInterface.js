@@ -7,9 +7,9 @@
 import React from 'react'
 import * as transformations from '../functions/graphs/transformations.js'
 import * as visualizations from '../functions/graphs/visualizations.js'
-import Action from '../data-structures/action.js'
-import * as colors from '../assets/colors.js'
-import './css/commandlineinterface.css'
+import Action from '../data-structures/Action.js'
+import * as colors from '../assets/Colors.js'
+import './css/CommandLineInterface.css'
 
 export class CLI extends React.Component {
 

@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import React from 'react'
-import './tutorial.css'
+import './Tutorial.css'
 
 export default class Tutorial extends React.Component {
     render() {

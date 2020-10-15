@@ -21,7 +21,7 @@
     border-radius: 0px 0px var(--border-rad) var(--border-rad);
     padding: var(--pad) 0px 0px var(--pad);
     background-color: var(--indigo-blue);
-    height: 72%;
+    height: 65%;
 }
 
 #input-line-wrapper {

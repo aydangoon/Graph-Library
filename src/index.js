@@ -4,7 +4,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter as Router } from 'react-router-dom'
-import App from './app.js'
+import App from './App.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import $ from 'jquery'
 import Popper from 'poppers.js'
