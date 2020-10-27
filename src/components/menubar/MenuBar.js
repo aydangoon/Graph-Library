@@ -12,7 +12,7 @@ export default class Home extends React.Component {
         return (
             <div className = 'navbar navbar-expand-sm shadow'>
                 <div class="navbar-brand mb-0 h1">
-                    <img src={require('../../assets/logo.png')} width='100'/>
+                    <img src={require('../../assets/logo.png')} width='70'/>
                 </div>
                 <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#collapsedBar" aria-controls="collapsedBar" aria-expanded="false" aria-label="Toggle navigation">
                     <img src={require('../../assets/hamburger.png')} alt='' width={25}/>

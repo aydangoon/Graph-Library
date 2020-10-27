@@ -42,7 +42,7 @@ export default class Home extends React.Component {
                             LitheGL is designed with users in mind. Only the necessary components needed to interface
                             with your graph are included in the build.
                             LitheGL features simple drag and selection features
-                            alongside a suite of other tools to streamline the process of building and analyizing graphs.
+                            alongside a suite of other tools to streamline the process of building and analyzing graphs.
                         </div>
                     </div>
                     <div className = 'col-8'>

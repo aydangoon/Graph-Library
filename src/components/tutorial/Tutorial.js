@@ -8,7 +8,7 @@ import './Tutorial.css'
 export default class Tutorial extends React.Component {
     render() {
         return (
-            <div className = 'container-sm p-2' id = 'tutorial'>
+            <div className = 'container-sm p-2'>
                 <div className = 'section d-flex flex-column align-items-center m-2'>
                     <div className = 'subtitle'> Adding, Moving and Deleting Edges and Nodes </div>
                     <div>
